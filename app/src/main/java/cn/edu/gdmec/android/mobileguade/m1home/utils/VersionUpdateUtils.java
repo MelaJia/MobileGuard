@@ -77,8 +77,7 @@ public class VersionUpdateUtils {
             HttpConnectionParams.setConnectionTimeout(httpClient.getParams(), 5000);
             HttpConnectionParams.setSoTimeout(httpClient.getParams(), 5000);
             HttpGet httpGet = new HttpGet("http://android2017.duapp.com/updateinfo.html");
-            HttpResponse execute = null;
-            execute = httpClient.execute(httpGet);
+            HttpResponse execute = httpClient.execute(httpGet);
             if (execute.getStatusLine().getStatusCode() == 200) {
                 HttpEntity httpEntity = execute.getEntity();
                 String result = EntityUtils.toString(httpEntity,"utf-8");
