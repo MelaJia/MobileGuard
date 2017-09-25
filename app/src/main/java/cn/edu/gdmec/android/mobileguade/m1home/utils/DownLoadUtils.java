@@ -5,7 +5,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.webkit.MimeTypeMap;
 
-import com.lidroid.xutils.HttpUtils;
 
 /**
  * 下载apk的方法

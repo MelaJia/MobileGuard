@@ -13,9 +13,11 @@ import android.content.pm.PackageManager;
 
 public class MyUtils {
     public static String getVersion(Context context) {
+        //可以获取清单文件中的所有内容
         PackageManager manager = context.getPackageManager();
         PackageInfo packageInfo = null;
         try {
+            //getPackageName（）获取当前文件的包名，获取本地版本号
             packageInfo = manager.getPackageInfo(
                     context.getPackageName(), 0);
             return packageInfo.versionName;

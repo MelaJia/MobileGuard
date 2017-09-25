@@ -3,6 +3,9 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     buildToolsVersion "26.0.1"
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
     defaultConfig {
         applicationId "cn.edu.gdmec.android.mobileguade"
         minSdkVersion 15
@@ -17,18 +20,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-//    packagingOptions{
-//        enclude 'META-INF/LICENSE'
-//        enclude 'META-INF/DEPENDENCIES'
-//        enclude 'META-INF/NOTICE'
-//        exclude 'META-INF/DEPENDENCIES.txt'
-//        enclude 'META-INF/LICENSE.txt'
-//        enclude 'META-INF/NOTICE.txt'
-//        enclude 'META-INF/notice.txt'
-//        enclude 'META-INF/lixense.txt'
-//        enclude 'META-INF/dependencies.txt'
-//        enclude 'META-INF/LGPL2.1'
-//    }
+      packagingOptions{
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+   }
 }
 
 dependencies {
@@ -39,9 +42,9 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
-    compile files('libs/xUtils-2.6.14.jar')
-    compile files('libs/RootTools.jar')
-    compile files('libs/httpcore-4.4.4.jar')
-    compile files('libs/httpclient-4.5.2.jar')
     compile files('libs/commons-codec-1.9.jar')
+    compile files('libs/httpclient-4.5.2.jar')
+    compile files('libs/httpcore-4.4.4.jar')
+    compile files('libs/RootTools.jar')
+    compile files('libs/xUtils-2.6.14.jar')
 }
