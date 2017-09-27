@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity{
     }
     @Override
     public boolean onKeyDown(int keyCode,KeyEvent event){
-        if(keyCode== KeyEvent.KEYCODE_BACK){
+        if(keyCode == KeyEvent.KEYCODE_BACK){
             if((System.currentTimeMillis()-mExitTime)<2000){
                 System.exit(0);
             }else{

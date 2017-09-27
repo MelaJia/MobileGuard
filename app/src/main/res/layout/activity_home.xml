@@ -24,7 +24,6 @@
             android:textColor="#90000000"
             android:textScaleX="1.1"
             android:typeface="normal"/>
-
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -38,9 +37,6 @@
             android:horizontalSpacing="10dp"
             android:verticalSpacing="10dp"
             android:numColumns="3">
-
         </GridView>
     </RelativeLayout>
-
-
 </LinearLayout>

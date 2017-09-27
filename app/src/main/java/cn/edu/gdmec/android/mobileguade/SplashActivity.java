@@ -18,14 +18,12 @@ public class SplashActivity extends AppCompatActivity {
         mTvVision =(TextView)findViewById(R.id.tv_splash_version);
         mTvVision.setText("版本号"+mVersion);
 
-
-        final VersionUpdateUtils updateUtils=new VersionUpdateUtils(mVersion, SplashActivity.this);
+        final VersionUpdateUtils versionUpdateUtils=new VersionUpdateUtils(mVersion, SplashActivity.this);
         new Thread(){
             @Override
             public void run() {
-
-                updateUtils.getCloudVersion();
                 super.run();
+                versionUpdateUtils.getCloudVersion();
             };
         }.start();
     }
