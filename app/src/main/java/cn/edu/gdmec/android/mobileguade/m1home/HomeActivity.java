@@ -153,7 +153,7 @@ public class HomeActivity extends AppCompatActivity {
     /**
      * 保存密码 本方法需要在完成：手机防盗模块后使用;
      *
-     * @param affirmPwsd
+     *
      */
     private void savePwsd(String afftrmPwsd) {
         SharedPreferences.Editor edit = msharedPreferences.edit();
