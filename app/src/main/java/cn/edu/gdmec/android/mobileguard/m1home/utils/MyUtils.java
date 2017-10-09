@@ -1,4 +1,4 @@
-package cn.edu.gdmec.android.mobileguade.m1home.utils;
+package cn.edu.gdmec.android.mobileguard.m1home.utils;
 
 
 import android.app.Activity;

@@ -1,24 +1,21 @@
-package cn.edu.gdmec.android.mobileguade.m1home;
-import cn.edu.gdmec.android.mobileguade.R;
+package cn.edu.gdmec.android.mobileguard.m1home;
+import cn.edu.gdmec.android.mobileguard.R;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.widget.AdapterView;
-import android.widget.GridLayout;
 import android.widget.GridView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
-import android.R.attr;
 
-import cn.edu.gdmec.android.mobileguade.m1home.adapter.HomeAdapter;
-import cn.edu.gdmec.android.mobileguade.m2theftguard.dialog.InterPasswordDialog;
-import cn.edu.gdmec.android.mobileguade.m2theftguard.dialog.SetUpPasswordDialog;
-import cn.edu.gdmec.android.mobileguade.m2theftguard.utils.MD5Utils;
+import cn.edu.gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 
 /**
  * Created by HP on 2017/9/24.

@@ -1,5 +1,5 @@
-package cn.edu.gdmec.android.mobileguade.m1home.adapter;
-import cn.edu.gdmec.android.mobileguade.R;
+package cn.edu.gdmec.android.mobileguard.m1home.adapter;
+import cn.edu.gdmec.android.mobileguard.R;
 import android.content.Context;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;

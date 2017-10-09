@@ -1,4 +1,4 @@
-package cn.edu.gdmec.android.mobileguade.m2theftguard.dialog;
+package cn.edu.gdmec.android.mobileguard.m2theftguard.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -6,12 +6,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import cn.edu.gdmec.android.mobileguade.R;
+import cn.edu.gdmec.android.mobileguard.R;
 
 /**
  * Created by Dell on 2017/9/27.

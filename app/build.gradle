@@ -7,7 +7,7 @@ android {
         javaMaxHeapSize "4g"
     }
     defaultConfig {
-        applicationId "cn.edu.gdmec.android.mobileguade"
+        applicationId "cn.edu.gdmec.android.mobileguard"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1

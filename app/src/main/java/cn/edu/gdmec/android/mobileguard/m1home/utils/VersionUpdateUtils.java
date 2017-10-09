@@ -1,4 +1,4 @@
-package cn.edu.gdmec.android.mobileguade.m1home.utils;
+package cn.edu.gdmec.android.mobileguard.m1home.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -6,7 +6,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.preference.DialogPreference;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -15,17 +14,15 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.HttpConnectionParams;
-import org.apache.http.util.EncodingUtils;
 import org.apache.http.util.EntityUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
 
-import cn.edu.gdmec.android.mobileguade.R;
-import cn.edu.gdmec.android.mobileguade.m1home.HomeActivity;
-import cn.edu.gdmec.android.mobileguade.m1home.adapter.HomeAdapter;
-import cn.edu.gdmec.android.mobileguade.m1home.entity.VersionEntity;
+import cn.edu.gdmec.android.mobileguard.R;
+import cn.edu.gdmec.android.mobileguard.m1home.HomeActivity;
+import cn.edu.gdmec.android.mobileguard.m1home.entity.VersionEntity;
 
 /**
  * Created by HP on 2017/9/18.
