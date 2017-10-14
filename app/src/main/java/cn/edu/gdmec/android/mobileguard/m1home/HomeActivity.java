@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.KeyEvent;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import cn.edu.gdmec.android.mobileguard.m1home.adapter.HomeAdapter;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.LostFindActivity;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.InterPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
@@ -32,16 +34,20 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home);
-        getSupportActionBar().hide();
+      //  getSupportActionBar().hide();
         msharedPreferences = getSharedPreferences("config",MODE_PRIVATE);
+
+        //初始化GridView
         gv_name = (GridView) findViewById(R.id.gv_home);
         gv_name.setAdapter(new HomeAdapter(HomeActivity.this));
+        //设置条目的点击事件
         gv_name.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                System.out.print(i);
-                switch (i) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //System.out.print(i);
+                switch (position) {
                     case 0: //点击手机防盗
                         if (isSetUpPassword()) {
                             //弹出输入密码对话框
@@ -54,25 +60,6 @@ public class HomeActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    public void startActivity(Class<?> cls) {
-        Intent intent = new Intent(HomeActivity.this, cls);
-        startActivity(intent);
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if ((System.currentTimeMillis() - mExitTime) < 2000) {
-                System.exit(0);
-            } else {
-                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_LONG).show();
-                mExitTime = System.currentTimeMillis();
-            }
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
     }
 
     /**
@@ -100,9 +87,7 @@ public class HomeActivity extends AppCompatActivity {
                     Toast.makeText(HomeActivity.this, "密码不能为空", Toast.LENGTH_LONG).show();
 
                 }
-
             }
-
             @Override
             public void cancel() {
                 setUpPasswordDialog.dismiss();
@@ -126,14 +111,12 @@ public class HomeActivity extends AppCompatActivity {
                 } else if (password.equals(MD5Utils.encode(mInPswdDialog.getPassword()))) {
                     //进入防盗主界面
                     mInPswdDialog.dismiss();
-                    //startActivity(LostFindActivity.class)
+                    startActivity(LostFindActivity.class);
                     Toast.makeText(HomeActivity.this, "可以进入手机防盗模块", Toast.LENGTH_LONG).show();
-                    ;
-
                 } else {
                     //对话框消失，弹出土司
                     mInPswdDialog.dismiss();
-                    Toast.makeText(HomeActivity.this, "密码有误，请重新输入", 0).show();
+                    Toast.makeText(HomeActivity.this, "密码有误，请重新输入",0).show();
                 }
             }
 
@@ -152,10 +135,10 @@ public class HomeActivity extends AppCompatActivity {
      *
      *
      */
-    private void savePwsd(String afftrmPwsd) {
+    private void savePwsd(String affirmPwsd) {
         SharedPreferences.Editor edit = msharedPreferences.edit();
         //防止用户隐私信息被泄露，需要加密密码
-        edit.putString("PhoneAntiTheftPWD", MD5Utils.encode(afftrmPwsd));
+        edit.putString("PhoneAntiTheftPWD", MD5Utils.encode(affirmPwsd));
         edit.commit();
     }
 
@@ -183,6 +166,32 @@ public class HomeActivity extends AppCompatActivity {
              return false;
         }
         return true;
+    }
+    /**
+     * 开启新的activity不关闭自己
+     *
+     * @param cls
+     *              新的activity字节码
+     * */
+    public void startActivity(Class<?> cls) {
+        Intent intent = new Intent(HomeActivity.this, cls);
+        startActivity(intent);
+    }
+    /**
+     * 按两次返回键退出程序
+     * */
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if ((System.currentTimeMillis() - mExitTime) < 2000) {
+                System.exit(0);
+            } else {
+                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_LONG).show();
+                mExitTime = System.currentTimeMillis();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

@@ -3,7 +3,6 @@ package cn.edu.gdmec.android.mobileguard.m2theftguard.dialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
@@ -15,9 +14,9 @@ import cn.edu.gdmec.android.mobileguard.R;
  * Created by Dell on 2017/9/27.
  */
 
-public class SetUpPasswordDialog extends Dialog implements View.OnClickListener {
-/**标题栏*/
-private TextView mTitleTV;
+public class SetUpPasswordDialog extends Dialog implements android.view.View.OnClickListener {
+    /**标题栏*/
+   private TextView mTitleTV;
     /**首次输入密码文本框*/
     public EditText mFirstPWDET;
     /**确认密码文本框*/
@@ -25,18 +24,22 @@ private TextView mTitleTV;
     /**回调接口*/
     private MyCallBack myCallBack;
 
+    public SetUpPasswordDialog(Context context){
+        super(context,R.style.dialog_custom);
+    }
+    public void setCallBack(MyCallBack myCallBack){
+        this.myCallBack=myCallBack;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState){
         setContentView(R.layout.setup_password_dialog);
         super.onCreate(savedInstanceState);
         initView();
     }
-    public SetUpPasswordDialog(@NonNull Context context){
-        super(context,R.style.dialog_custom);
-    }
+
 /**初始化控件*/
     private void initView() {
-        mTitleTV = (TextView) findViewById(R.id.tv_setuppwd_title);
+        mTitleTV = (TextView) findViewById(R.id.tv_interpwd_title);
         mFirstPWDET = (EditText) findViewById(R.id.et_firstpwd);
         mAffirmET = (EditText) findViewById(R.id.et_affirm_firstpwd);
         findViewById(R.id.btn_ok).setOnClickListener(this);
@@ -51,14 +54,11 @@ private TextView mTitleTV;
             mTitleTV.setText(title);
         }
     }
-    public void setCallBack(MyCallBack myCallBack){
-        this.myCallBack=myCallBack;
-    }
+
     @Override
-    public void onClick(View view){
-        switch (view.getId()){
+    public void onClick(View v){
+        switch (v.getId()){
             case R.id.btn_ok:
-                System.out.println("SetupPasswordDialog");
                 myCallBack.ok();
                 break;
             case R.id.btn_cancel:
