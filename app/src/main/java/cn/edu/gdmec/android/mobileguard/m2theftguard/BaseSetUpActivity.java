@@ -19,7 +19,7 @@ public abstract class BaseSetUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_base_set_up);
+// setContentView(R.layout.activity_base_set_up);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         sp = getSharedPreferences("config",MODE_PRIVATE);
         //1、初始化手势识别器
