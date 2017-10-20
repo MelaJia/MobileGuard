@@ -14,17 +14,17 @@ import cn.edu.gdmec.android.mobileguard.R;
  */
 
 public class SetUp4Activity extends BaseSetUpActivity {
-   private TextView mStatusTV;
-    private ToggleButton mToggleButton;
+  // private TextView mStatusTV;
+  //  private ToggleButton mToggleButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_up4);
         ((RadioButton)findViewById(R.id.rb_four)).setChecked(true);
-        initView();
+      //  initView();
     }
-    private void initView(){
+   /* private void initView(){
        ((RadioButton)findViewById(R.id.rb_four)).setChecked(true);
         mStatusTV = (TextView)findViewById(R.id.tv_setup4_status);
        mToggleButton = (ToggleButton)findViewById(R.id.togglebtn_securityfunction);
@@ -49,14 +49,14 @@ public class SetUp4Activity extends BaseSetUpActivity {
            mStatusTV.setText("防盗保护没有开启");
             mToggleButton.setChecked(false);
         }
-   }
+   }*/
 
     @Override
     public void showNext() {
         //跳转至防盗保护页面
-        SharedPreferences.Editor editor = sp.edit();
-       editor.putBoolean("isSetup",true);
-       editor.commit();
+       // SharedPreferences.Editor editor = sp.edit();
+      // editor.putBoolean("isSetup",true);
+     //  editor.commit();
         startActivityAndFinishSelf(LostFindActivity.class);
 
     }
