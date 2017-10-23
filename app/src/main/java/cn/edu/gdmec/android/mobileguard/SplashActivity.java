@@ -10,9 +10,11 @@ import cn.edu.gdmec.android.mobileguard.m1home.utils.VersionUpdateUtils;
 public class SplashActivity extends AppCompatActivity {
     private TextView mTvVision;
     private String mVersion;
+//    onCreate(),activity创建时调用
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//      setCotentView()  加载布局
         setContentView(R.layout.activity_splash);
         mVersion= MyUtils.getVersion(getApplicationContext());
         mTvVision =(TextView)findViewById(R.id.tv_splash_version);

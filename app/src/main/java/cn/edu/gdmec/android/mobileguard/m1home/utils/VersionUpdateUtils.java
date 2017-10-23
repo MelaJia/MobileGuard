@@ -50,6 +50,7 @@ public class VersionUpdateUtils {
                    break;
                case MESSAGE_SHOW_DIALOG:
                    showUpdateDialog(versionEntity);
+
                    break;
                case MESSAGE_ENTERHOME:
                    Intent intent = new Intent(context, HomeActivity.class);
@@ -85,9 +86,9 @@ public class VersionUpdateUtils {
                 versionEntity.apkurl = jsonObject.getString("apkurl");
                 if (!mVersion.equals(versionEntity.versionCode)){
                     handler.sendEmptyMessage(MESSAGE_SHOW_DIALOG);
-//                    System.out.println(versionEntity.description);
-//                    DownLoadUtils downloadUtils = new DownLoadUtils();
-//                    downloadUtils.downloadApk(versionEntity.apkurl,"mobileguade.apk",context);
+                    System.out.println(versionEntity.description);
+                    DownLoadUtils downloadUtils = new DownLoadUtils();
+                    downloadUtils.downloadApk(versionEntity.apkurl,"mobileguade.apk",context);
                 }
             }
         } catch (IOException e) {
