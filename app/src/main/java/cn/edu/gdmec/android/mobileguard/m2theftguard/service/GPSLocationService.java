@@ -53,10 +53,10 @@ public class GPSLocationService extends Service {
         @Override
         public void onLocationChanged(Location location) {
             StringBuilder sb = new StringBuilder();
-            sb.append("accuracy"+location.getAccuracy()+"\n");
-            sb.append("speed"+location.getSpeed()+"\n");
-            sb.append("Longitude"+location.getLongitude()+"\n");
-            sb.append("Latitude"+location.getLatitude()+"\n");
+            sb.append("accuracy:"+location.getAccuracy()+"\n");
+            sb.append("speed:"+location.getSpeed()+"\n");
+            sb.append("Longitude:"+location.getLongitude()+"\n");
+            sb.append("Latitude:"+location.getLatitude()+"\n");
             String result = sb.toString();
             SharedPreferences sp = getSharedPreferences("config",MODE_PRIVATE);
             String safenumber = sp.getString("safephone","");

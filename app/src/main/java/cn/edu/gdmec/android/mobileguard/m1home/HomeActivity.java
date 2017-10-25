@@ -53,7 +53,7 @@ public class HomeActivity extends Activity {
         gv_home.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                //System.out.print(i);
+                System.out.print(i);
                 switch (i) {
                     case 0: //点击手机防盗
                         if (isSetUpPassword()) {
