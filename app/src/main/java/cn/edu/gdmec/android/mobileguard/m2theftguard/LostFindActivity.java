@@ -3,6 +3,8 @@ package cn.edu.gdmec.android.mobileguard.m2theftguard;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.widget.CompoundButton;
@@ -13,16 +15,17 @@ import android.widget.ToggleButton;
 
 import cn.edu.gdmec.android.mobileguard.R;
 
-public class LostFindActivity extends Activity implements View.OnClickListener {
+public class LostFindActivity extends AppCompatActivity implements View.OnClickListener {
     private TextView mSafePhoneTV;
     private RelativeLayout mInterSetupRL;
     private SharedPreferences msharedPreferences;
     private ToggleButton mToggleButton;
     private TextView mProtectStatusTV;
 
-    protected void onCreate(android.os.Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+       // requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_lost_find);
         msharedPreferences = getSharedPreferences("config", MODE_PRIVATE);
         if (!isSetUp()) {
@@ -33,12 +36,6 @@ public class LostFindActivity extends Activity implements View.OnClickListener {
     }
     private boolean isSetUp() {
         return msharedPreferences.getBoolean("isSetUp", false);
-    }
-
-    private void startSetUp1Activity() {
-        Intent intent = new Intent(LostFindActivity.this, SetUp1Activity.class);
-        startActivity(intent);
-        finish();
     }
 
     /*初始化控件*/
@@ -65,10 +62,9 @@ public class LostFindActivity extends Activity implements View.OnClickListener {
             mToggleButton.setChecked(false);
 
         }
-
         mToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                     mProtectStatusTV.setText("防盗保护已经开启");
                 }else {
@@ -79,8 +75,11 @@ public class LostFindActivity extends Activity implements View.OnClickListener {
                 editor.commit();
             }
         });
-
-
+    }
+    private void startSetUp1Activity() {
+        Intent intent = new Intent(LostFindActivity.this,SetUp1Activity.class);
+        startActivity(intent);
+        finish();
     }
 
 
@@ -88,15 +87,13 @@ public class LostFindActivity extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.rl_inter_setup_wizard:
-                //
+                //重新进入设置向导
                 startSetUp1Activity();
                 break;
             case R.id.imgv_leftbtn:
-
                 finish();
                 break;
         }
-
     }
 }
 

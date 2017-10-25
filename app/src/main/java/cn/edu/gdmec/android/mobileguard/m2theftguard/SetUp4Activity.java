@@ -14,30 +14,32 @@ import cn.edu.gdmec.android.mobileguard.R;
  */
 
 public class SetUp4Activity extends BaseSetUpActivity {
-  // private TextView mStatusTV;
-  //  private ToggleButton mToggleButton;
+
+   private TextView mStatusTV;
+    private ToggleButton mToggleButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_up4);
         ((RadioButton)findViewById(R.id.rb_four)).setChecked(true);
-      //  initView();
+        initView();
     }
-   /* private void initView(){
+    //加载控件
+    private void initView(){
        ((RadioButton)findViewById(R.id.rb_four)).setChecked(true);
         mStatusTV = (TextView)findViewById(R.id.tv_setup4_status);
        mToggleButton = (ToggleButton)findViewById(R.id.togglebtn_securityfunction);
        mToggleButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-           public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+           public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked){
                   mStatusTV.setText("防盗保护已经开启");
                 }else {
                     mStatusTV.setText("防盗保护没有开启");
                 }
               SharedPreferences.Editor editor = sp.edit();
-                editor.putBoolean("protecting",isChecked);
+                editor.putBoolean("protecting", isChecked);
                 editor.commit();
             }
        });
@@ -49,18 +51,16 @@ public class SetUp4Activity extends BaseSetUpActivity {
            mStatusTV.setText("防盗保护没有开启");
             mToggleButton.setChecked(false);
         }
-   }*/
+   }
 
     @Override
     public void showNext() {
         //跳转至防盗保护页面
-       // SharedPreferences.Editor editor = sp.edit();
-      // editor.putBoolean("isSetup",true);
-     //  editor.commit();
+       SharedPreferences.Editor editor = sp.edit();
+       editor.putBoolean("isSetUp",true);
+       editor.commit();
         startActivityAndFinishSelf(LostFindActivity.class);
-
     }
-
     @Override
     public void showPre() {
         startActivityAndFinishSelf(SetUp3Activity.class);

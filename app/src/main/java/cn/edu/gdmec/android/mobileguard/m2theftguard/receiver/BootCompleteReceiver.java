@@ -7,7 +7,7 @@ import android.content.Intent;
 import cn.edu.gdmec.android.mobileguard.App;
 
 public class BootCompleteReceiver extends BroadcastReceiver {
-
+    private static final String TAG = BootCompleteReceiver.class.getSimpleName();
     @Override
     public void onReceive(Context context, Intent intent) {
         // TODO: This method is called when the BroadcastReceiver is receiving
