@@ -26,14 +26,14 @@ public class SmsLostFindReceiver extends BroadcastReceiver{
     private ComponentName componentName;
     @Override
     public void onReceive(Context context, Intent intent) {
-        sharedPreferences = context.getSharedPreferences("config", Activity.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences("config",Activity.MODE_PRIVATE);
         boolean protecting = sharedPreferences.getBoolean("protecting",true);
         //如果开启了防盗
         if (protecting){
             //获取超级管理员
-            DevicePolicyManager dmp =(DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
+            DevicePolicyManager dmp = (DevicePolicyManager) context.getSystemService(Context.DEVICE_POLICY_SERVICE);
             //获取短信数据
-            Object[] objs = (Object[])intent.getExtras().get("pdus");
+            Object[] objs = (Object[]) intent.getExtras().get("pdus");
             for (Object obj : objs){
                 SmsMessage smsMessage = SmsMessage.createFromPdu((byte[]) obj);
                 //获取来信号码
@@ -45,11 +45,11 @@ public class SmsLostFindReceiver extends BroadcastReceiver{
                 String body = smsMessage.getMessageBody();
                 String safephone = sharedPreferences.getString("safephone",null);
                 //如果是安全号码发送的
-                if (!TextUtils.isEmpty(safephone) & sender.equals(safephone)){
+                if (!TextUtils.isEmpty(safephone)&sender.equals(safephone)){
                     if ("#*location*#".equals(body)){
                         Log.i(TAG,"返回位置信息.");
                         //获取位置 放在服务器里面实现
-                        Intent service = new Intent(context, GPSLocationService.class);
+                        Intent service = new Intent(context,GPSLocationService.class);
                         context.startService(service);
                         abortBroadcast();
                     }else if ("#*alarm*#".equals(body)){

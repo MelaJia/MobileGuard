@@ -17,9 +17,7 @@ public class SetUp1Activity extends BaseSetUpActivity {
         setContentView(R.layout.activity_set_up1);
         ((RadioButton)findViewById(R.id.rb_first)).setChecked(true);
     }
-//    private void initView(){
-//
-//    }
+
 
     @Override
     public void showNext() {

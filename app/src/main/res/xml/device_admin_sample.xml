@@ -2,11 +2,11 @@
 <device-admin xmlns:android="http://schemas.android.com/apk/res/android">
     <uses-policies>
         <!--锁屏-->
-        <reset-password/>
         <!--清除数据-->
-        <force-lock/>
+        <force-lock />
         <!--重置密码-->
-        <wipe-data/>
+        <wipe-data />
+        <reset-password />
     </uses-policies>
 
 </device-admin>

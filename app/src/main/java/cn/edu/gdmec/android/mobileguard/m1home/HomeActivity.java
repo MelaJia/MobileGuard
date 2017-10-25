@@ -1,6 +1,7 @@
 package cn.edu.gdmec.android.mobileguard.m1home;
 import cn.edu.gdmec.android.mobileguard.R;
 
+import android.app.Activity;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Intent;
@@ -26,7 +27,7 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
  * Created by HP on 2017/9/24.-+--+
  */
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends Activity {
     private GridView gv_home;
     private long mExitTime;
     /**
@@ -43,7 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
        // requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_home);
-         getSupportActionBar().hide();
+       //  getSupportActionBar().hide();
         msharedPreferences = getSharedPreferences("config",MODE_PRIVATE);
         //初始化GridView
         gv_home = (GridView) findViewById(R.id.gv_home);
