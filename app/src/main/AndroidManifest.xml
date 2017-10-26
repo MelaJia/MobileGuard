@@ -66,7 +66,7 @@
             </intent-filter>
         </receiver>
         <!--  android:description="@string/sample_device_admin_description"-->
-        <!--android:label="@string/sample_device_admin"-->
+        <!--   android:label="@string/sample_device_admin"-->
         <receiver
             android:name=".m2theftguard.receiver.MyDeviceAdminReceiver"
 
