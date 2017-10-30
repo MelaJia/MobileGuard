@@ -24,3 +24,7 @@ public class ExampleInstrumentedTest {
         assertEquals("cn.edu.gdmec.android.mobileguade", appContext.getPackageName());
     }
 }
+
+
+
+
