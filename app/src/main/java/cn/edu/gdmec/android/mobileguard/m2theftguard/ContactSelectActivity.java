@@ -1,5 +1,6 @@
 package cn.edu.gdmec.android.mobileguard.m2theftguard;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +19,7 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.adapter.ContactAdapter;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.entity.ContactInfo;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.ContactInfoParser;
 
-public class ContactSelectActivity extends AppCompatActivity implements View.OnClickListener{
+public class ContactSelectActivity extends Activity implements View.OnClickListener{
 
     private ListView mListView;
     private ContactAdapter adapter;

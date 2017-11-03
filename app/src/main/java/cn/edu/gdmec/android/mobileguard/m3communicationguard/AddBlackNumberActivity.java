@@ -1,5 +1,6 @@
 package cn.edu.gdmec.android.mobileguard.m3communicationguard;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +25,7 @@ import static android.R.attr.subMenuArrow;
  * Created by Dell on 2017/10/30.
  */
 
-public class AddBlackNumberActivity  extends AppCompatActivity implements View.OnClickListener{
+public class AddBlackNumberActivity  extends Activity implements View.OnClickListener{
     private CheckBox mSmsCB;
     private CheckBox mTelCB;
     private EditText mNumET;
