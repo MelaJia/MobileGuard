@@ -22,7 +22,7 @@ public class BlackNumberDao {
 
     public BlackNumberDao(Context context) {
         super();
-        blackNumberOpenHelper = new BlackNumberOpenHelper(context, "blackNumber.db", null, 1);
+        blackNumberOpenHelper = new BlackNumberOpenHelper(context,"blackNumber.db",null,1);
     }
 
     /***
@@ -39,10 +39,10 @@ public class BlackNumberDao {
             blackContactInfo.phoneNumber = blackContactInfo.phoneNumber
                     .substring(3, blackContactInfo.phoneNumber.length());
         }
-        values.put("number", blackContactInfo.phoneNumber);
-        values.put("name", blackContactInfo.contactName);
-        values.put("mode", blackContactInfo.mode);
-        long rowid = db.insert("blacknumber", null, values);
+        values.put("number",blackContactInfo.phoneNumber);
+        values.put("name",blackContactInfo.contactName);
+        values.put("mode",blackContactInfo.mode);
+        long rowid = db.insert("blacknumber",null,values);
         if (rowid == -1) {
             //插入数据不成功
             return false;
@@ -76,12 +76,13 @@ public class BlackNumberDao {
      * @param pagenumber.第几页代码 从第0页开始
      * @param pagesize         每一个页面大小
      */
-    public List<BlackContactInfo> getPageBlackNumber(int pagenumber, int pagesize) {
+    public List<BlackContactInfo> getPageBlackNumber(int pagenumber,int pagesize) {
         //得到可阅读的数据库
         SQLiteDatabase db = blackNumberOpenHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(
                 "select number,mode,name from blacknumber limit ? offset ?",
-                new String[]{String.valueOf(pagesize * pagenumber)});
+              //  new String[]{String.valueOf(pagesize * pagenumber)});
+                new String[]{String.valueOf(pagesize),String.valueOf(pagesize * pagenumber)});
         List<BlackContactInfo> mBlackContactInfos = new ArrayList<BlackContactInfo>();
         while (cursor.moveToNext()) {
             BlackContactInfo info = new BlackContactInfo();
@@ -106,8 +107,7 @@ public class BlackNumberDao {
     public boolean IsNumberExist(String number) {
         //得到可读的数据库
         SQLiteDatabase db = blackNumberOpenHelper.getReadableDatabase();
-        Cursor cursor = db.query("blacknumber", null, "number=?",
-                new String[]{number}, null, null, null);
+        Cursor cursor = db.query("blacknumber",null,"number=?",new String[]{number},null,null,null);
         if (cursor.moveToNext()) {
             cursor.close();
             db.close();
@@ -120,11 +120,11 @@ public class BlackNumberDao {
 
     //根据号码查询黑名单
     public int getBlackContactMode(String number) {
-        Log.d("incoming phonenumber", number);
+        Log.d("incoming phonenumber",number);
         //得到可读的数据库
         SQLiteDatabase db = blackNumberOpenHelper.getReadableDatabase();
-        Cursor cursor = db.query("blacknumber", new String[]{"mode"}, "number=?",
-                new String[]{number}, null, null, null);
+        Cursor cursor = db.query("blacknumber",new String[]{"mode"},"number=?",
+                new String[]{number},null,null,null);
         int mode = 0;
         if (cursor.moveToNext()) {
             mode = cursor.getInt(cursor.getColumnIndex("mode"));
@@ -137,7 +137,7 @@ public class BlackNumberDao {
     //获取数据库的总条目个数
     public int getTotalNumber() {
         SQLiteDatabase db = blackNumberOpenHelper.getReadableDatabase();
-        Cursor cursor = db.rawQuery("select count(*) from blacknumber", null);
+        Cursor cursor = db.rawQuery("select count(*) from blacknumber",null);
         cursor.moveToNext();
         int count = cursor.getInt(0);
         cursor.close();

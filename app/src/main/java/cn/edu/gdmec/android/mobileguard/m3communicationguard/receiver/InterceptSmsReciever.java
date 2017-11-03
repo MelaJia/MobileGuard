@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.telephony.SmsMessage;
+import android.content.res.ObbInfo;
+import android.os.Handler;
 import android.util.Log;
 
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.dao.BlackNumberDao;
@@ -16,10 +18,10 @@ import cn.edu.gdmec.android.mobileguard.m3communicationguard.db.dao.BlackNumberD
 public class InterceptSmsReciever extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent){
-        SharedPreferences mSP = context.getSharedPreferences("config",
-                Context.MODE_PRIVATE);
+        SharedPreferences mSP = context.getSharedPreferences("config",Context.MODE_PRIVATE);
         boolean BlackNumStatus = mSP.getBoolean("BlackNumStatus",true);
         if(!BlackNumStatus){
+            //黑名单拦截关闭
             return;
         }
         BlackNumberDao dao = new BlackNumberDao(context);
@@ -32,7 +34,7 @@ public class InterceptSmsReciever extends BroadcastReceiver {
                 sender = sender.substring(3,sender.length());
             }
             int mode = dao.getBlackContactMode(sender);
-            Log.d("_______","onReceive: "+mode);
+//            Log.d("_______","onReceive: "+mode);
             if(mode == 2 || mode == 3){
                 abortBroadcast();
             }

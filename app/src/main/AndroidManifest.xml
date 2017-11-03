@@ -49,19 +49,7 @@
         <activity android:name=".m2theftguard.SetUp2Activity"/>
         <activity android:name=".m2theftguard.SetUp3Activity"/>
         <activity android:name=".m2theftguard.SetUp4Activity"/>
-        <activity android:name=".m3communicationguard.AddBlackNumberActivity"
-            />
-        <activity android:name=".m3communicationguard.SecurityPhoneActivity"
-                />
 
-        <!--<receiver-->
-            <!--android:name=".m2theftguard.receiver.BootCompleteReceiver"-->
-            <!--android:enabled="true"-->
-            <!--android:exported="true">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.BOOT_COMPLETED"/>-->
-            <!--</intent-filter>-->
-        <!--</receiver>-->
         <receiver android:name=".m2theftguard.receiver.BootCompleteReceiver"
             android:enabled="true"
             android:exported="true">
@@ -72,11 +60,6 @@
         <service android:name=".m2theftguard.service.GPSLocationService"
             android:enabled="true"
             android:exported="true"/>
-
-        <!--<service android:name=".m2theftguard.service.GPSLocationService"-->
-            <!--android:enabled="true"-->
-            <!--android:exported="true"-->
-            <!--/>-->
 
         <receiver android:name=".m2theftguard.receiver.SmsLostFindReceiver"
             android:enabled="true"
@@ -99,7 +82,9 @@
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED"/>
             </intent-filter>
         </receiver>
-
+        <!--m3、通信卫士部分-->
+        <activity android:name=".m3communicationguard.AddBlackNumberActivity" />
+        <activity android:name=".m3communicationguard.SecurityPhoneActivity" />
         <receiver android:name=".m3communicationguard.receiver.InterceptCallReciever"
                   android:enabled="true"
                   android:exported="true">

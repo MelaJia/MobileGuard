@@ -24,15 +24,15 @@ public class BlackNumberOpenHelper extends SQLiteOpenHelper {
         this.VERSION = version;
     }
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase){
-        sqLiteDatabase.execSQL("create table blacknumber" +
+    public void onCreate(SQLiteDatabase db){
+        db.execSQL("create table blacknumber" +
         "(id integer primary key autoincrement," +
                 "number varchar(20)," +
         "name varchar(255)," +
         "mode integer)");
     }
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase,int i,int i1){
+    public void onUpgrade(SQLiteDatabase db,int i,int i1){
 
     }
 }

@@ -26,33 +26,38 @@ import cn.edu.gdmec.android.mobileguard.m3communicationguard.entity.BlackContact
  */
 
 public class SecurityPhoneActivity extends Activity implements View.OnClickListener {
+    /*有黑名单时，显示的帧布局*/
     private FrameLayout mHaveBlackNumber;
+    /*没有黑名单时，显示的帧布局*/
     private FrameLayout mNoBlackNumber;
     private BlackNumberDao dao;
     private ListView mListView;
     private int pagenumber = 0;
-    private int pagesize = 4;
+    private int pagesize = 15;
     private int totalNumber;
     private List<BlackContactInfo> pageBlackNumber = new ArrayList<BlackContactInfo>();
     private BlackContactAdapter adapter;
-
+/**
+ * 用于填充数据，刷新页面
+ * */
     private void fillData() {
         dao = new BlackNumberDao(SecurityPhoneActivity.this);
         totalNumber = dao.getTotalNumber();
         if (totalNumber == 0) {
+            //数据库中没有黑名单数据
             mHaveBlackNumber.setVisibility(View.GONE);
             mNoBlackNumber.setVisibility(View.VISIBLE);
         } else if (totalNumber > 0) {
+            //数据库中有黑名单数据
             mHaveBlackNumber.setVisibility(View.VISIBLE);
             mNoBlackNumber.setVisibility(View.GONE);
             pagenumber = 0;
             if (pageBlackNumber.size() > 0) {
                 pageBlackNumber.clear();
             }
-            pageBlackNumber
-                    .addAll(dao.getPageBlackNumber(pagenumber, pagesize));
+            pageBlackNumber.addAll(dao.getPageBlackNumber(pagenumber,pagesize));
             if (adapter == null) {
-                adapter = new BlackContactAdapter(pageBlackNumber, SecurityPhoneActivity.this);
+                adapter = new BlackContactAdapter(pageBlackNumber,SecurityPhoneActivity.this);
                 adapter.setCallBack(new BlackContactAdapter.BlackContactCallBack() {
                     @Override
                     public void DataSizeChanged() {
@@ -67,9 +72,7 @@ public class SecurityPhoneActivity extends Activity implements View.OnClickListe
     }
 
     private void initView() {
-        findViewById(R.id.rl_titlebar).setBackgroundColor(
-                getResources().getColor(R.color.bright_purple)
-        );
+        findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.bright_purple));
         ImageView mLeftImgv = (ImageView) findViewById(R.id.imgv_leftbtn);
         ((TextView) findViewById(R.id.tv_title)).setText("通讯卫士");
         mLeftImgv.setOnClickListener(this);
@@ -82,8 +85,11 @@ public class SecurityPhoneActivity extends Activity implements View.OnClickListe
             @Override
             public void onScrollStateChanged(AbsListView absListView, int i) {
                 switch (i) {
+                    //没有滑动状态
                     case AbsListView.OnScrollListener.SCROLL_STATE_FLING:
+                        //获取最后一个课件条目
                         int lastVisiblePosition = mListView.getLastVisiblePosition();
+                        //当前条目是最后一个，则查询更多的数据
                         if (lastVisiblePosition == pageBlackNumber.size() - 1) {
                             pagenumber++;
                             if (pagenumber * pagesize >= totalNumber) {
@@ -121,7 +127,8 @@ public class SecurityPhoneActivity extends Activity implements View.OnClickListe
                 finish();
                 break;
             case R.id.btn_addblacknumber:
-                startActivity(new Intent(this, AddBlackNumberActivity.class));
+                //跳转至添加黑名单页面
+                startActivity(new Intent(this,AddBlackNumberActivity.class));
                 break;
 
         }
@@ -131,6 +138,7 @@ public class SecurityPhoneActivity extends Activity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         if (totalNumber != dao.getTotalNumber()) {
+            //数据发生变化
             if (dao.getTotalNumber() > 0) {
                 mHaveBlackNumber.setVisibility(View.VISIBLE);
                 mNoBlackNumber.setVisibility(View.GONE);
@@ -140,7 +148,7 @@ public class SecurityPhoneActivity extends Activity implements View.OnClickListe
             }
             pagenumber = 0;
             pageBlackNumber.clear();
-            pageBlackNumber.addAll(dao.getPageBlackNumber(pagenumber, pagesize));
+            pageBlackNumber.addAll(dao.getPageBlackNumber(pagenumber,pagesize));
             if (adapter != null) {
                 adapter.notifyDataSetChanged();
             }
