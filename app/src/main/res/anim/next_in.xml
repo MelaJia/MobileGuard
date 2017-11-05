@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<translate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:fromXDelta="100%p"
-    android:toXDelta="0"
-    android:fromYDelta="0"
-    android:toYDelta="0"
-    android:duration="500"
-    android:repeatCount="0">
 
-</translate>
+    <!--一个set标签中包含多个动画效果,如果不想共享一个interpolator，则设置android:shareInterpolator="false";！-->
+<set xmlns:Android="http://schemas.Android.com/apk/res/Android"
+Android:shareInterpolator="false"
+Android:zAdjustment="top">
+    <translate xmlns:android="http://schemas.android.com/apk/res/android"
+        android:fromXDelta="100%p"
+        android:toXDelta="0"
+        android:fromYDelta="0"
+        android:toYDelta="0"
+        android:duration="500"
+        android:repeatCount="0">
+        <!--interpolator加速器，属性："@android:anim/bounce_interpolator" 到达终点产生弹球效果，弹几下回到终点          android:interpolator="@android:anim/bounce_interpolator"-->
+    </translate>
+</set>

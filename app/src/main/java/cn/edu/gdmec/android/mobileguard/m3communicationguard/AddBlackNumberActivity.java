@@ -25,7 +25,7 @@ import static android.R.attr.subMenuArrow;
  * Created by Dell on 2017/10/30.
  */
 
-public class AddBlackNumberActivity  extends AppCompatActivity implements View.OnClickListener{
+public class AddBlackNumberActivity  extends Activity implements View.OnClickListener{
     private CheckBox mSmsCB;
     private CheckBox mTelCB;
     private EditText mNumET;

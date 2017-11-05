@@ -23,6 +23,7 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.dialog.SetUpPasswordDialog;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.receiver.MyDeviceAdminReceiver;
 import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.SecurityPhoneActivity;
+import cn.edu.gdmec.android.mobileguard.m4appmanager.AppManagerActivity;
 
 /**
  * Created by HP on 2017/9/24.-+--+
@@ -68,6 +69,9 @@ public class HomeActivity extends Activity {
                     case 1:
                         startActivity(SecurityPhoneActivity.class);
                         break;//通讯卫士
+                    case 2:
+                        startActivity(AppManagerActivity.class);
+                        break;
                 }
             }
         });
@@ -135,7 +139,7 @@ public class HomeActivity extends Activity {
             @Override
             public void confirm() {
                 if (TextUtils.isEmpty(mInPswdDialog.getPassword())) {
-                    Toast.makeText(HomeActivity.this, "密码不能为空！", 0).show();
+                    Toast.makeText(HomeActivity.this, "密码不能为空！",0).show();
                 } else if (password.equals(MD5Utils.encode(mInPswdDialog.getPassword()))) {
                     //进入防盗主界面
                     mInPswdDialog.dismiss();
