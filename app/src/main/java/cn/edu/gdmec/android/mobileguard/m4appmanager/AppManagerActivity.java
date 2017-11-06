@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cn.edu.gdmec.android.mobileguard.R;
-import cn.edu.gdmec.android.mobileguard.m4appmanager.adapter.AppManagetAdapter;
+import cn.edu.gdmec.android.mobileguard.m4appmanager.adapter.AppManagerAdapter;
 import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 import cn.edu.gdmec.android.mobileguard.m4appmanager.utils.AppInfoParser;
 
@@ -36,7 +36,7 @@ public class AppManagerActivity extends AppCompatActivity implements View.OnClic
     private List<AppInfo> appInfos;
     private List<AppInfo> userAppInfos = new ArrayList<AppInfo>();
     private List<AppInfo> systemAppInfos = new ArrayList<AppInfo>();
-    private AppManagetAdapter adapter;
+    private AppManagerAdapter adapter;
     private TextView mAppNumTV;
 
 
@@ -49,7 +49,7 @@ public class AppManagerActivity extends AppCompatActivity implements View.OnClic
             switch (msg.what){
                 case 10:
                     if (adapter == null){
-                        adapter = new AppManagetAdapter(userAppInfos,systemAppInfos,AppManagerActivity.this);
+                        adapter = new AppManagerAdapter(userAppInfos,systemAppInfos,AppManagerActivity.this);
                     }
                     mListView.setAdapter(adapter);
                     adapter.notifyDataSetChanged();

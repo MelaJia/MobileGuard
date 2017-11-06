@@ -1,6 +1,8 @@
 package cn.edu.gdmec.android.mobileguard.m4appmanager.adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,11 +25,11 @@ import cn.edu.gdmec.android.mobileguard.m4appmanager.utils.EngineUtils;
  * Created by HP on 2017/11/5.
  */
 
-public class AppManagetAdapter extends BaseAdapter{
+public class AppManagerAdapter extends BaseAdapter{
     private List<AppInfo> UserAppInfos;
     private List<AppInfo> SystemAppInfos;
     private Context context;
-    public AppManagetAdapter(List<AppInfo> userAppInfos,List<AppInfo> systemAppInfos,Context context){
+    public AppManagerAdapter(List<AppInfo> userAppInfos, List<AppInfo> systemAppInfos, Context context){
         super();
         UserAppInfos = userAppInfos;
         SystemAppInfos = systemAppInfos;
@@ -181,7 +183,11 @@ public class AppManagetAdapter extends BaseAdapter{
                     }
                     EngineUtils.utinstallApplication(context,appInfo);
                     break;
+                case R.id.tv_about:
 
+                   EngineUtils.aboutApp(context,appInfo);
+
+                    break;
             }
         }
     }
