@@ -109,8 +109,8 @@ public class EngineUtils {
             //获得包的所有内容信息类
             PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
 
-//            String versionName = pi.versionName;
-            float versioncode = pi.versionCode;
+          String versioncode = pi.versionName;
+          //  float versioncode = pi.versionCode;
             long firstInstallTime = pi.firstInstallTime;//获取用户第一次安装时间
 
             Date d = new Date(firstInstallTime);
