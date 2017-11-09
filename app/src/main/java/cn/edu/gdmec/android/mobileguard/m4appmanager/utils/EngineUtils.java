@@ -107,9 +107,8 @@ public class EngineUtils {
             //包管理器
             PackageManager pm = context.getPackageManager();
             //获得包的所有内容信息类
-            PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
-
-          String versioncode = pi.versionName;
+            PackageInfo pi = pm.getPackageInfo(appInfo.packageName, 0);
+            String versioncode = pi.versionName;
           //  float versioncode = pi.versionCode;
             long firstInstallTime = pi.firstInstallTime;//获取用户第一次安装时间
 
