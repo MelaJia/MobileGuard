@@ -138,6 +138,22 @@ public class EngineUtils {
             String cc="";
             cc+=c.getIssuerDN().toString();
             cc += c.getSubjectDN().toString();
+
+            ////将权限转换为字节数组流
+            StringBuilder builer = new StringBuilder();
+           // List<String> permissionList = new ArrayList<>();
+            PackageInfo packinfo = pm.getPackageInfo(appInfo.packageName, PackageManager.GET_PERMISSIONS);
+            String[] perssion =packinfo.requestedPermissions;
+            for(int i=0;i<perssion.length;i++){
+                builer.append(perssion[i]+"\n"+".").toString();
+            }
+//            if(perssion != null){
+//                //遍历传递过来的权限集合
+//                for(String str : perssion){
+//                    permissionList.add(str);
+//                }
+//            }
+
             //将签名转换为字节数组流
 //            StringBuilder builder = new StringBuilder();
 //            for (Signature signature : signatures) {
@@ -152,7 +168,7 @@ public class EngineUtils {
 
             AlertDialog.Builder dialog = new AlertDialog.Builder(context);
             dialog.setTitle(appInfo.appName);
-            dialog.setMessage("Version:"+versioncode+"\n"+"Install time:"+time+"\n"+"Certificate issuer:"+cc+"\n\n"+"Permissions:"+"");
+            dialog.setMessage("Version:"+versioncode+"\n"+"Install time:"+time+"\n"+"Certificate issuer:"+cc+"\n\n"+"Permissions:"+builer);
             dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {

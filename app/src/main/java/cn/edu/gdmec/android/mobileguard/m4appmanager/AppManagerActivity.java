@@ -1,5 +1,6 @@
 package cn.edu.gdmec.android.mobileguard.m4appmanager;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -27,7 +28,7 @@ import cn.edu.gdmec.android.mobileguard.m4appmanager.entity.AppInfo;
 import cn.edu.gdmec.android.mobileguard.m4appmanager.utils.AppInfoParser;
 
 //AppManagerActivity主页面的数据适配器
-public class AppManagerActivity extends AppCompatActivity implements View.OnClickListener {
+public class AppManagerActivity extends Activity implements View.OnClickListener {
     /**手机剩余内存Textview*/
     private TextView mPhoneMemoryTV;
     /**展示sd卡剩余内存*/
