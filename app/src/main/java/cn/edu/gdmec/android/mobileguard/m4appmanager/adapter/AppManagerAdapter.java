@@ -121,6 +121,7 @@ public class AppManagerAdapter extends BaseAdapter{
             viewHolder.mSettingAppTV.setOnClickListener(listener);
             viewHolder.mShareAppTV.setOnClickListener(listener);
             viewHolder.mUninstallTV.setOnClickListener(listener);
+        viewHolder.mAppAbout.setOnClickListener(listener);
             return view;
 
         }
@@ -184,9 +185,7 @@ public class AppManagerAdapter extends BaseAdapter{
                     EngineUtils.utinstallApplication(context,appInfo);
                     break;
                 case R.id.tv_about:
-
                    EngineUtils.aboutApp(context,appInfo);
-
                     break;
             }
         }
