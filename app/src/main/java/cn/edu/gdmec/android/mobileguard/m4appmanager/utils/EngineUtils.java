@@ -4,11 +4,14 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.icu.text.SimpleDateFormat;
 import android.net.Uri;
+import android.os.Environment;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.Toast;
@@ -146,24 +149,7 @@ public class EngineUtils {
             for(int i=0;i<perssion.length;i++){
                 builer.append(perssion[i]+"\n"+".").toString();
             }
-//            if(perssion != null){
-//                //遍历传递过来的权限集合
-//                for(String str : perssion){
-//                    permissionList.add(str);
-//                }
-//            }
 
-            //将签名转换为字节数组流
-//            StringBuilder builder = new StringBuilder();
-//            for (Signature signature : signatures) {
-//                builder.append(signature.toCharsString());
-//            }
-//            /************** 得到应用签名 **************/
-//            String signature = builder.toString();
-
-//            //加密算法的类，这里的参数可以使MD4,MD5等加密算法
-//            MessageDigest md = MessageDigest.getInstance("SHA1");
-//            //获得公钥
 
             AlertDialog.Builder dialog = new AlertDialog.Builder(context);
             dialog.setTitle(appInfo.appName);
@@ -179,6 +165,39 @@ public class EngineUtils {
             return;
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    public static void hudong(Context context, AppInfo appInfo){
+        try {
+
+         //   获取应用报名
+          PackageManager pm = context.getPackageManager();
+            StringBuffer sb = new StringBuffer();
+
+            ActivityInfo pi[] = pm.getPackageArchiveInfo(appInfo.appPath, PackageManager.GET_ACTIVITIES).activities;
+        //    List<PackageInfo> apps = pm.getInstalledPackages(PackageManager.GET_UNINSTALLED_PACKAGES);
+            for(int i=0;i<pi.length;i++){
+                sb.append(pi[i].toString());
+                sb.append("\n");
+
+            }
+
+
+
+
+            AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+            dialog.setTitle(appInfo.appName);
+            dialog.setMessage("包名："+sb);
+            dialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+
+                }
+            });
+            dialog.show();
+
+        } catch (Exception e) {
         }
     }
 }

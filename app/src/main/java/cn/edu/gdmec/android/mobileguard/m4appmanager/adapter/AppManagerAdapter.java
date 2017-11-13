@@ -102,6 +102,7 @@ public class AppManagerAdapter extends BaseAdapter{
             viewHolder.mUninstallTV = (TextView) view.findViewById(R.id.tv_uninstall_app);
             viewHolder.mAppOptionLL = (LinearLayout) view.findViewById(R.id.ll_option_app);
             viewHolder.mAppAbout = (TextView) view.findViewById(R.id.tv_about);
+            viewHolder.mHuDong = (TextView) view.findViewById(R.id.tv_hudong);
             view.setTag(viewHolder);
 
         }
@@ -122,6 +123,7 @@ public class AppManagerAdapter extends BaseAdapter{
             viewHolder.mShareAppTV.setOnClickListener(listener);
             viewHolder.mUninstallTV.setOnClickListener(listener);
         viewHolder.mAppAbout.setOnClickListener(listener);
+        viewHolder.mHuDong.setOnClickListener(listener);
             return view;
 
         }
@@ -155,6 +157,7 @@ public class AppManagerAdapter extends BaseAdapter{
         //关于
         TextView mAppAbout;
         //操作APP的线性布局
+        TextView mHuDong;
         LinearLayout mAppOptionLL;
     }
     class MyClickListener implements View.OnClickListener{
@@ -187,6 +190,8 @@ public class AppManagerAdapter extends BaseAdapter{
                 case R.id.tv_about:
                    EngineUtils.aboutApp(context,appInfo);
                     break;
+                case R.id.tv_hudong:
+                    EngineUtils.hudong(context,appInfo);
             }
         }
     }
