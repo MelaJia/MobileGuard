@@ -11,5 +11,6 @@ public class CacheClearListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cache_clear_list);
+        System.out.print("hell");
     }
 }
