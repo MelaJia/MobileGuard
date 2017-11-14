@@ -3,8 +3,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import cn.edu.gdmec.android.mobileguard.m1home.utils.MyUtils;
-import cn.edu.gdmec.android.mobileguard.m1home.utils.VersionUpdateUtils;
+import cn.edu.gdmec.android.mobileguard.m5virusscan.utils.MyUtils;
+import cn.edu.gdmec.android.mobileguard.m5virusscan.utils.VersionUpdateUtils;
 
 
 public class SplashActivity extends AppCompatActivity {

@@ -36,6 +36,7 @@
         <!-- <activity android:name=".SplashActivity"> -->
         <!-- 信使编译器 -->
         <activity android:name=".m1home.HomeActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -110,6 +111,7 @@
         </receiver>
 
         <activity android:name=".m4appmanager.AppManagerActivity" />
+        <activity android:name=".SplashActivity"/>
         <activity android:name=".m5virusscan.VirusScanActivity"/>
         <activity android:name=".m5virusscan.VirusScanSpeedActivity"/>
         <activity android:name=".m6cleancache.CacheClearListActivity" />
