@@ -37,6 +37,7 @@
         <!-- 信使编译器 -->
         <activity android:name=".m1home.HomeActivity">
 
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

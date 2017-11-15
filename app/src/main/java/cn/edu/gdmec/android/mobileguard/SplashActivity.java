@@ -15,9 +15,9 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //      setCotentView()  加载布局
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_virus_scan);
         mVersion= MyUtils.getVersion(getApplicationContext());
-        mTvVision =(TextView)findViewById(R.id.tv_splash_version);
+        mTvVision =(TextView)findViewById(R.id.tv_db);
         mTvVision.setText("版本号"+mVersion);
 
         final VersionUpdateUtils versionUpdateUtils=new VersionUpdateUtils(mVersion, SplashActivity.this);

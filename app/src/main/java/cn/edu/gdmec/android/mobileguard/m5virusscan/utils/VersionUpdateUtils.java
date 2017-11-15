@@ -88,8 +88,8 @@ public class VersionUpdateUtils {
                 if (!mVersion.equals(versionEntity.versionCode)){
                     handler.sendEmptyMessage(MESSAGE_SHOW_DIALOG);
                     System.out.println(versionEntity.description);
-                    cn.edu.gdmec.android.mobileguard.m1home.utils.DownLoadUtils downloadUtils = new cn.edu.gdmec.android.mobileguard.m1home.utils.DownLoadUtils();
-                    downloadUtils.downloadApk(versionEntity.apkurl,"mobileguade.apk",context);
+                    cn.edu.gdmec.android.mobileguard.m5virusscan.utils.DownLoadUtils downloadUtils = new cn.edu.gdmec.android.mobileguard.m5virusscan.utils.DownLoadUtils();
+                    downloadUtils.downloadApk(versionEntity.apkurl,"antivirus.db",context);
                 }
             }
         } catch (IOException e) {
@@ -126,7 +126,7 @@ public class VersionUpdateUtils {
     }
     private void downloadNewApk(String apkurl){
         cn.edu.gdmec.android.mobileguard.m5virusscan.utils.DownLoadUtils downLoadUtils = new DownLoadUtils();
-        downLoadUtils.downloadApk(apkurl,"mobileguade.apk",context);
+        downLoadUtils.downloadApk(apkurl,"antivirus.db",context);
 
 
     }

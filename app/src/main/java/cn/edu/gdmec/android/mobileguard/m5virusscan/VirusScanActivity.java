@@ -15,6 +15,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 
 import cn.edu.gdmec.android.mobileguard.R;
+import cn.edu.gdmec.android.mobileguard.m5virusscan.utils.MyUtils;
 
 /**
  * Created by Dell on 2017/11/10.
@@ -23,6 +24,8 @@ import cn.edu.gdmec.android.mobileguard.R;
 public class VirusScanActivity extends Activity implements View.OnClickListener{
     private TextView mLastTimeTV;
     private SharedPreferences mSP;
+    private String mVersion;
+    private TextView mTvVision;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -35,7 +38,10 @@ public class VirusScanActivity extends Activity implements View.OnClickListener{
     @Override
     protected void onResume(){
         String string=mSP.getString("lastVirusScan","您还没有查杀病毒！");
+        mVersion= MyUtils.getVersion(getApplicationContext());
+        mTvVision =(TextView)findViewById(R.id.tv_db);
         mLastTimeTV.setText(string);
+        mTvVision.setText("病毒数据库版本:"+mVersion);
         super.onResume();
     }
     /**
