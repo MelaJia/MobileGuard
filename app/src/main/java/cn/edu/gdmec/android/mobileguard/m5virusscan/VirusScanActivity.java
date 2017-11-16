@@ -24,11 +24,16 @@ import cn.edu.gdmec.android.mobileguard.m5virusscan.utils.MyUtils;
 public class VirusScanActivity extends Activity implements View.OnClickListener{
     private TextView mLastTimeTV;
     private SharedPreferences mSP;
+    private String mVersion;
+    private TextView mTvVision;
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_virus_scan);
+        mVersion= MyUtils.getVersion(getApplicationContext());
+        mTvVision =(TextView)findViewById(R.id.tv_db_version);
+        mTvVision.setText("病毒数据库版本:"+mVersion);
         mSP=getSharedPreferences("config",MODE_PRIVATE);
         copyDB("antivirus.db");
         initview();
@@ -72,6 +77,7 @@ public class VirusScanActivity extends Activity implements View.OnClickListener{
         );
         ImageView mLeftImgev=(ImageView) findViewById(R.id.imgv_leftbtn);
         ((TextView) findViewById(R.id.tv_title)).setText("病毒查杀");
+
         mLeftImgev.setOnClickListener(this);
         mLeftImgev.setImageResource(R.drawable.back);
         mLastTimeTV = (TextView) findViewById(R.id.tv_lastscantime);

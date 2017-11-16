@@ -11,7 +11,7 @@ import cn.edu.gdmec.android.mobileguard.m5virusscan.utils.VersionUpdateUtils;
 
 public class SplashActivity extends AppCompatActivity {
     private TextView mTvVision;
-    private String mVersion;
+    public String mVersion;
 //    onCreate(),activity创建时调用
     @Override
     protected void onCreate(Bundle savedInstanceState) {
