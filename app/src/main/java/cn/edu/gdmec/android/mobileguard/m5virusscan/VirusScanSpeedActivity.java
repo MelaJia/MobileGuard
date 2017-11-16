@@ -26,7 +26,7 @@ import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.adapter.ScanVirusAdapter;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.dao.AntiVirusDao;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.entity.ScanAppInfo;
-import cn.edu.gdmec.android.mobileguard.m5virusscan.utils.MD5Utils;
+import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 
 /**
  * Created by Dell on 2017/11/10.

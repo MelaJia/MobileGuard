@@ -3,8 +3,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import cn.edu.gdmec.android.mobileguard.m5virusscan.utils.MyUtils;
-import cn.edu.gdmec.android.mobileguard.m5virusscan.utils.VersionUpdateUtils;
+import cn.edu.gdmec.android.mobileguard.m1home.utils.MyUtils;
+import cn.edu.gdmec.android.mobileguard.m1home.utils.VersionUpdateUtils;
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -17,7 +17,7 @@ public class SplashActivity extends AppCompatActivity {
 //      setCotentView()  加载布局
         setContentView(R.layout.activity_virus_scan);
         mVersion= MyUtils.getVersion(getApplicationContext());
-        mTvVision =(TextView)findViewById(R.id.tv_db);
+        mTvVision =(TextView)findViewById(R.id.tv_splash_version);
         mTvVision.setText("版本号"+mVersion);
 
         final VersionUpdateUtils versionUpdateUtils=new VersionUpdateUtils(mVersion, SplashActivity.this);
