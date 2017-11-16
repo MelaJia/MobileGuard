@@ -114,7 +114,7 @@
         </receiver>
 
         <activity android:name=".m4appmanager.AppManagerActivity" />
-
+         <activity android:name=".m5virusscan.SplashActivity"/>
         <activity android:name=".m5virusscan.VirusScanActivity"/>
         <activity android:name=".m5virusscan.VirusScanSpeedActivity"/>
         <activity android:name=".m6cleancache.CacheClearListActivity" />

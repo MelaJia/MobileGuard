@@ -18,6 +18,18 @@
             android:background="@drawable/virusscan_icon"/>
 
         <TextView
+            android:id="@+id/tv_db_version"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/imgv_view"
+            android:layout_above="@+id/tv_lastscantime"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/white"
+            style="@style/textview12sp"
+            android:text="病毒数据库版本:"
+            />
+
+        <TextView
             android:id="@+id/tv_lastscantime"
             style="@style/textview12sp"
             android:layout_alignParentBottom="true"

@@ -15,7 +15,7 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 
 import cn.edu.gdmec.android.mobileguard.R;
-import cn.edu.gdmec.android.mobileguard.m1home.utils.MyUtils;
+import cn.edu.gdmec.android.mobileguard.m5virusscan.utils.MyUtils;
 
 /**
  * Created by Dell on 2017/11/10.
