@@ -75,7 +75,7 @@ public class HomeActivity extends Activity {
                         startActivity(AppManagerActivity.class);
                         break;
                     case 3:
-                        startActivity(cn.edu.gdmec.android.mobileguard.m5virusscan.SplashActivity.class);
+                        startActivity(VirusScanActivity.class);
                         break;//手机杀毒
                 }
             }

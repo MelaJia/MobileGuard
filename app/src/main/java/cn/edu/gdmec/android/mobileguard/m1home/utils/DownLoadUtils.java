@@ -13,7 +13,7 @@ import android.webkit.MimeTypeMap;
 
 public class DownLoadUtils {
     public void downloadApk(String url, String targetFile, Context context){
-        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(url));
+        DownloadManager.Request request = new DownloadManager.Request( Uri.parse(url));
         request.setAllowedOverRoaming(false);
         MimeTypeMap mimeTypeMap = MimeTypeMap.getSingleton();
         String mimeString = mimeTypeMap.getMimeTypeFromExtension(mimeTypeMap.getFileExtensionFromUrl(url));
@@ -23,8 +23,9 @@ public class DownLoadUtils {
         request.setVisibleInDownloadsUi(true);
 
         request.setDestinationInExternalPublicDir("/download",targetFile);
+
         DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
-        long mTakid = downloadManager.enqueue(request);
+        long mTaskid = downloadManager.enqueue(request);
 
 
     }

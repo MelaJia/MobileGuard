@@ -6,6 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Environment;
+
+import java.io.File;
 
 /**
  * Created by HP on 2017/9/13.
@@ -27,10 +31,11 @@ public class MyUtils {
         }
     }
 
-    public static void installApk(Activity activity) {
+    public static void installApk(Activity activity,String apkFile) {
         Intent intent=new Intent("android.intent.action.VIEW");
         intent.addCategory("android.intent.category.DEFAULT");
-        //intent.setDataAndType(Uri.fromFile(new File("/mnt/sdcard/mobilesafe2.0.apk")));
+        intent.setDataAndType( Uri.fromFile(
+                new File( Environment.getExternalStoragePublicDirectory("/download/").getPath()+"/"+apkFile)),"application/vnd.android.package-archive");
         activity.startActivityForResult(intent,0);
 
 
