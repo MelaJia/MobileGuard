@@ -16,7 +16,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//      setCotentView()  加载布局
         setContentView(R.layout.activity_splash);
         mVersion= MyUtils.getVersion(getApplicationContext());
         mTvVision =(TextView)findViewById(R.id.tv_splash_version);
