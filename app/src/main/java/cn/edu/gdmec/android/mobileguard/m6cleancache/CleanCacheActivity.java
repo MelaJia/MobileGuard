@@ -46,7 +46,7 @@ public class CleanCacheActivity extends Activity implements View.OnClickListener
                     animation.stop();
                     mCleanCacheFL.setVisibility(View.GONE);
                     mFinishCleanFL.setVisibility(View.VISIBLE);
-                    mSizeTV.setText("成功清理"+ Formatter.formatFileSize(CleanCacheActivity.this,cacheMemory));
+                    mSizeTV.setText("成功清理： "+ Formatter.formatFileSize(CleanCacheActivity.this,cacheMemory));
                 }
                 break;
         }
