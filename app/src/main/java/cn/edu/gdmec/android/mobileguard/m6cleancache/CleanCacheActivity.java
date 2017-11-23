@@ -111,7 +111,7 @@ public class CleanCacheActivity extends Activity implements View.OnClickListener
     }
     private void initView(){
         findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.rose_red));
-        ((TextView)findViewById(R.id.tv_title)).setText("缓存清理");
+        ((TextView) findViewById(R.id.tv_title)).setText("缓存清理");
         ImageView mLeftImgv = (ImageView) findViewById(R.id.imgv_leftbtn);
         mLeftImgv.setOnClickListener(this);
         mLeftImgv.setImageResource(R.drawable.back);
@@ -121,8 +121,8 @@ public class CleanCacheActivity extends Activity implements View.OnClickListener
         mMemoryTV = (TextView) findViewById(R.id.tv_cleancache_memory);
         mMemoryUnitTV = (TextView) findViewById(R.id.tv_cleanache_memoryunit);
         mCleanCacheFL = (FrameLayout) findViewById(R.id.fl_cleancache);
-        mFinishCleanFL = (FrameLayout)findViewById(R.id.fl_finishclean);
-        mSizeTV = (TextView)findViewById(R.id.tv_cleanmemorysize);
+        mFinishCleanFL = (FrameLayout) findViewById(R.id.fl_finishclean);
+        mSizeTV = (TextView) findViewById(R.id.tv_cleanmemorysize);
         findViewById(R.id.btn_finish_cleancache).setOnClickListener(this);
 
 
@@ -158,6 +158,6 @@ private void cleanAll(){
             return;
         }
     }
-    Toast.makeText(this,"清理完毕",Toast.LENGTH_LONG).show();
+    Toast.makeText(this,"清理完毕",Toast.LENGTH_SHORT).show();
 }
 }

@@ -60,7 +60,7 @@ public class CacheClearListActivity extends Activity implements View.OnClickList
                    //在主线程添加变化后集合
                     mCacheInfos.clear();
                     mCacheInfos.addAll(cacheInfos);
-                    //ListView刷新
+                    //ListView刷新00
                     adapter.notifyDataSetChanged();
                     mCacheLV.setSelection(mCacheInfos.size());
                     break;
