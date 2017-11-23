@@ -1,5 +1,6 @@
 package cn.edu.gdmec.android.mobileguard.m6cleancache;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.IPackageStatsObserver;
 import android.content.pm.PackageInfo;
@@ -32,7 +33,7 @@ import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m6cleancache.adapter.CacheCleanAdapter;
 import cn.edu.gdmec.android.mobileguard.m6cleancache.entity.CacheInfo;
 
-public class CacheClearListActivity extends AppCompatActivity implements View.OnClickListener{
+public class CacheClearListActivity extends Activity implements View.OnClickListener{
     protected static final int SCANNING = 100;
     protected static final  int FINISH = 101;
     private AnimationDrawable animation;
@@ -81,7 +82,7 @@ public class CacheClearListActivity extends AppCompatActivity implements View.On
         @Override
         protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-            requestWindowFeature(Window.FEATURE_NO_TITLE);
+      //  requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_cache_clear_list);
         pm = getPackageManager();
         initView();

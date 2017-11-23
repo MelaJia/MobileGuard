@@ -19,10 +19,10 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
-    <!--m5 permission-->
-    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE"/>
-    <uses-permission android:name="android.permission.CLEAR_APP_CACHE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <!-- m5 permission -->
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".App"
@@ -37,9 +37,6 @@
         <!-- <activity android:name=".SplashActivity"> -->
         <!-- 信使编译器 -->
         <activity android:name=".m1home.HomeActivity">
-
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -114,12 +111,11 @@
         </receiver>
 
         <activity android:name=".m4appmanager.AppManagerActivity" />
-
-
-        <activity android:name=".m5virusscan.VirusScanActivity"/>
-        <activity android:name=".m5virusscan.VirusScanSpeedActivity"/>
+        <activity android:name=".m5virusscan.VirusScanActivity" />
+        <activity android:name=".m5virusscan.VirusScanSpeedActivity" />
         <activity android:name=".m6cleancache.CacheClearListActivity" />
-        <activity android:name=".m6cleancache.CleanCacheActivity"></activity>
+        <activity android:name=".m6cleancache.CleanCacheActivity" />
+        <activity android:name=".m8trafficmonitor.OperatorSetActivity"></activity>
     </application>
 
 </manifest>

@@ -1,5 +1,6 @@
 package cn.edu.gdmec.android.mobileguard.m6cleancache;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.AnimationDrawable;
@@ -23,7 +24,7 @@ import java.util.Random;
 
 import cn.edu.gdmec.android.mobileguard.R;
 
-public class CleanCacheActivity extends AppCompatActivity implements View.OnClickListener {
+public class CleanCacheActivity extends Activity implements View.OnClickListener {
     protected static final int CLEANNING = 100;
     protected static final int CLEAN_FINISH = 10;
     private AnimationDrawable animation ;
@@ -55,7 +56,7 @@ public class CleanCacheActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_clean_cache);
         initView();
         pm = getPackageManager();
