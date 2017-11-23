@@ -26,7 +26,7 @@ import cn.edu.gdmec.android.mobileguard.R;
 
 public class CleanCacheActivity extends Activity implements View.OnClickListener {
     protected static final int CLEANNING = 100;
-    protected static final int CLEAN_FINISH = 10;
+   // protected static final int CLEAN_FINISH = 10;
     private AnimationDrawable animation ;
     private long cacheMemory;
     private TextView mMemoryTV;
@@ -46,7 +46,7 @@ public class CleanCacheActivity extends Activity implements View.OnClickListener
                     animation.stop();
                     mCleanCacheFL.setVisibility(View.GONE);
                     mFinishCleanFL.setVisibility(View.VISIBLE);
-                    mSizeTV.setText("成功清理： "+ Formatter.formatFileSize(CleanCacheActivity.this,cacheMemory));
+                    mSizeTV.setText("成功清理：" + Formatter.formatFileSize(CleanCacheActivity.this,cacheMemory));
                 }
                 break;
         }
@@ -65,7 +65,7 @@ public class CleanCacheActivity extends Activity implements View.OnClickListener
         initData();
     }
     private void initData(){
-       // cleanAll();
+       cleanAll();
         new Thread(){
             @Override
             public void run() {
@@ -78,8 +78,8 @@ public class CleanCacheActivity extends Activity implements View.OnClickListener
                     }
                     Random rand = new Random();
                     int i = rand.nextInt();
-                    i = rand.nextInt(1024);
-                    memory +=1024*i;
+                     i = rand.nextInt(1024);
+                    memory += 1024 * i;
                     if (memory>cacheMemory){
                         memory = cacheMemory;
                     }
@@ -92,17 +92,17 @@ public class CleanCacheActivity extends Activity implements View.OnClickListener
         }.start();
     }
     private void formatMemory(long memory){
-        String cacheMemoryStr = Formatter.formatFileSize(this,memory);
+        String cacheMemoryStr = Formatter.formatFileSize(this, memory);
         String memoryStr;
         String memoryUnit;
         //
-        if(memory>900){
+        if(memory > 900){
             //
             memoryStr = cacheMemoryStr.substring(0, cacheMemoryStr.length()-2);
             memoryUnit = cacheMemoryStr.substring(cacheMemoryStr.length()-2,cacheMemoryStr.length());
         }else {
             //
-            memoryStr = cacheMemoryStr.substring(0,cacheMemoryStr.length()-1);
+            memoryStr = cacheMemoryStr.substring(0, cacheMemoryStr.length()-1);
             memoryUnit = cacheMemoryStr.substring(cacheMemoryStr.length()-1,cacheMemoryStr.length());
 
         }
