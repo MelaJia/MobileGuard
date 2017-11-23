@@ -118,7 +118,7 @@ public class CacheClearListActivity extends Activity implements View.OnClickList
                 for (PackageInfo info : infos) {
                     getCacheSize(info);
                     try {
-                        Thread.sleep(500);
+                        Thread.sleep(50);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
