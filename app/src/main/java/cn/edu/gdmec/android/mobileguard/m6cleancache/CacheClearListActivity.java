@@ -77,7 +77,7 @@ public class CacheClearListActivity extends Activity implements View.OnClickList
                     break;
             }
 
-        };
+        }
     };
         @Override
         protected void onCreate(Bundle savedInstanceState) {
