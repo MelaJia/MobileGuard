@@ -1,19 +1,26 @@
 package cn.edu.gdmec.android.mobileguard.m6cleancache;
 
+import android.content.Intent;
+import android.content.pm.IPackageStatsObserver;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.pm.PackageStats;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.os.Message;
+import android.os.RemoteException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.format.Formatter;
+import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.lang.reflect.Method;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,12 +32,13 @@ import cn.edu.gdmec.android.mobileguard.R;
 import cn.edu.gdmec.android.mobileguard.m6cleancache.adapter.CacheCleanAdapter;
 import cn.edu.gdmec.android.mobileguard.m6cleancache.entity.CacheInfo;
 
-public class CacheClearListActivity extends AppCompatActivity {
+public class CacheClearListActivity extends AppCompatActivity implements View.OnClickListener{
     protected static final int SCANNING = 100;
     protected static final  int FINISH = 101;
     private AnimationDrawable animation;
-
+    /**建议清理*/
     private TextView mRecomandTV;
+    /*可清理*/
     private TextView mCanCleanTV;
     private long cacheMemory;
     private List<CacheInfo> cacheInfos = new ArrayList<CacheInfo>();
@@ -41,20 +49,22 @@ public class CacheClearListActivity extends AppCompatActivity {
     private Button mCacheBtn;
     private Thread thread;
     private Handler handler = new Handler(){
-     //   @Override
-        public void handlerMessage(Message msg){
+        @Override
+        public void handleMessage(Message msg) {
             switch (msg.what){
                 case SCANNING:
-                    PackageInfo info = (PackageInfo)msg.obj;
-                    mRecomandTV.setText("正在扫描："+info.packageName);
-                    mCanCleanTV.setText("已扫描缓存："+ Formatter.formatFileSize(CacheClearListActivity.this,cacheMemory));/*Formatter.formatFileSize(CacheClearListActivity.this,cacheMemory));*/;
+                    PackageInfo info = (PackageInfo) msg.obj;
+                    mRecomandTV.setText("正在扫描：" + info.packageName);
+                    mCanCleanTV.setText("已扫描缓存：" + Formatter.formatFileSize(CacheClearListActivity.this,cacheMemory));/*Formatter.formatFileSize(CacheClearListActivity.this,cacheMemory));*/;
+                   //在主线程添加变化后集合
                     mCacheInfos.clear();
                     mCacheInfos.addAll(cacheInfos);
+                    //ListView刷新
                     adapter.notifyDataSetChanged();
                     mCacheLV.setSelection(mCacheInfos.size());
                     break;
-
                 case FINISH:
+                    //扫描完毕，动画停止
                     animation.stop();
                     if (cacheMemory>0){
                         mCacheBtn.setEnabled(true);
@@ -66,36 +76,126 @@ public class CacheClearListActivity extends AppCompatActivity {
                     break;
             }
 
-        }
+        };
     };
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+            requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_cache_clear_list);
         pm = getPackageManager();
         initView();
     }
     private void initView(){
-        findViewById(R.id.rl_titlebar).setBackgroundColor(
-                getResources().getColor(R.color.rose_red));
+        findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.rose_red));
         ImageView mLeftImgv = (ImageView)findViewById(R.id.imgv_leftbtn);
-       // mLeftImgv.setOnClickListener(this);
+        mLeftImgv.setOnClickListener(this);
         mLeftImgv.setImageResource(R.drawable.back);
         ((TextView)findViewById(R.id.tv_title)).setText("缓存扫描");
         mRecomandTV = (TextView)findViewById(R.id.tv_recommend_clean);
         mCanCleanTV = (TextView) findViewById(R.id.tv_can_clean);
         mCacheLV = (ListView) findViewById(R.id.lv_scancache);
         mCacheBtn = (Button)findViewById(R.id.btn_cleanall);
-       // mCacheBtn.setOnClickListener(this);
-        animation =(AnimationDrawable)findViewById(R.id.imgv_broom).getBackground();
+        mCacheBtn.setOnClickListener(this);
+        animation = (AnimationDrawable)findViewById(R.id.imgv_broom).getBackground();
+        animation.setOneShot(false);
         animation.start();
         adapter = new CacheCleanAdapter(this,mCacheInfos);
         mCacheLV.setAdapter(adapter);
         fillData();
     }
+    /**
+     * 填充数据
+     * */
     private void fillData(){
+        thread = new Thread() {
+            @Override
+            public void run() {
+                //历遍手机里面的所有应用程序
+                cacheInfos.clear();
+                List<PackageInfo> infos = pm.getInstalledPackages(0);
+                for (PackageInfo info : infos) {
+                    getCacheSize(info);
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    Message msg = Message.obtain();
+                    msg.obj = info;
+                    msg.what = SCANNING;
+                    handler.sendMessage(msg);
+                }
+                Message msg = Message.obtain();
+                msg.what = FINISH;
+                handler.sendMessage(msg);
+            };
+        };
+        thread.start();
+        }
+        /*
+        *获取某个包名对应的程序缓存大小
+        *@param info 应用程序的包信息
+        * */
+        public void getCacheSize(PackageInfo info){
+          //  Method method = null;
+            try {
+                Method method = PackageManager.class.getDeclaredMethod("getPackageSizeInfo", String.class, IPackageStatsObserver.class);
+                method.invoke(pm,info.packageName,new MyPackDbsever(info));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+    }
+
+
+    private class MyPackDbsever extends android.content.pm.IPackageStatsObserver.Stub{
+        private PackageInfo info;
+        public MyPackDbsever(PackageInfo info){
+            this.info=info;
+        }
+
+        @Override
+        public void onGetStatsCompleted(PackageStats pStats, boolean succeeded) throws RemoteException {
+            long cachesize = pStats.cacheSize;
+            if (cachesize >= 0){
+                CacheInfo cacheInfo = new CacheInfo();
+                cacheInfo.cacheSize = cachesize;
+                cacheInfo.packagename = info.packageName;
+                cacheInfo.appName = info.applicationInfo.loadLabel(pm).toString();
+                cacheInfo.appIcon = info.applicationInfo.loadIcon(pm);
+                cacheInfos.add(cacheInfo);
+                cacheMemory += cachesize;
+            }
+
+        }
+    }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.imgv_leftbtn:
+                finish();
+                break;
+            case R.id.btn_cleanall:
+                if (cacheMemory>0){
+                    //跳转至清理缓存的页面的activity
+                    Intent intent = new Intent(this,CleanCacheActivity.class);
+                    //将要清理的垃圾大小传递至另一个页面
+                    intent.putExtra("cacheMemory",cacheMemory);
+                    startActivity(intent);
+                    finish();
+
+                }
+                break;
+        }
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        animation.stop();
+        if (thread != null){
+            thread.interrupt();
+        }
+    }
 }

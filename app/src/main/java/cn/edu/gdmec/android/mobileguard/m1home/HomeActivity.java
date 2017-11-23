@@ -26,6 +26,8 @@ import cn.edu.gdmec.android.mobileguard.m2theftguard.utils.MD5Utils;
 import cn.edu.gdmec.android.mobileguard.m3communicationguard.SecurityPhoneActivity;
 import cn.edu.gdmec.android.mobileguard.m4appmanager.AppManagerActivity;
 import cn.edu.gdmec.android.mobileguard.m5virusscan.VirusScanActivity;
+import cn.edu.gdmec.android.mobileguard.m6cleancache.CacheClearListActivity;
+import cn.edu.gdmec.android.mobileguard.m6cleancache.CleanCacheActivity;
 
 /**
  * Created by HP on 2017/9/24.-+--+
@@ -77,6 +79,8 @@ public class HomeActivity extends Activity {
                     case 3:
                         startActivity(VirusScanActivity.class);
                         break;//手机杀毒
+                    case 4:
+                        startActivity(CacheClearListActivity.class);
                 }
             }
         });
