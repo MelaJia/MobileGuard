@@ -15,33 +15,37 @@ import cn.edu.gdmec.android.mobileguard.m8trafficmonitor.db.TrafficOpenHelper;
 /**
  * Created by HP on 2017/11/23.
  */
-
 public class TrafficDao {
     private TrafficOpenHelper helper;
-
     public TrafficDao(Context context){
         helper = new TrafficOpenHelper(context);
     }
-
-    public long getMoblieGRPS(String dataString){
+    /*
+    * 获取某一天用的流量*/
+    public long getMebileGPRS(String dataString){
         SQLiteDatabase db = helper.getReadableDatabase();
         long gprs = 0;
-        Cursor cursor = db.rawQuery("select gprs from traffic where date=?",new String[] {"datetime(" + dataString + ")"});
-        if (cursor.moveToNext()){
+        Cursor cursor = db.rawQuery("select gprs from traffic where date=?",
+                new String[]{ "datetime(" + dataString + ")" });
+
+        if(cursor.moveToNext()) {
             String gprsStr = cursor.getString(0);
-            if(!TextUtils.isEmpty(gprsStr))
+            if (!TextUtils.isEmpty(gprsStr))
                 gprs = Long.parseLong(gprsStr);
-        }else{
+        } else{
             gprs = -1;
         }
         return gprs;
     }
 
+
+
+    //插入今天的数据
     public void insertTodayGPRS(long gprs){
         SQLiteDatabase db = helper.getReadableDatabase();
         Date dNow = new Date();
         Calendar calendar = Calendar.getInstance();//得到日历
-        calendar.setTime(dNow);//把当前时间赋给日历
+        calendar.setTime(dNow);//把当前的时间赋给日历
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String dataString = sdf.format(dNow);
         ContentValues values = new ContentValues();
@@ -49,15 +53,16 @@ public class TrafficDao {
         values.put("date","datetime(" + dataString + ")");
         db.insert("traffic",null,values);
     }
-
+    //修改今天的数据
     public void UpdateTodayGPRS(long gprs){
-        SQLiteDatabase db = helper.getReadableDatabase();
+        SQLiteDatabase db = helper.getWritableDatabase();
         Date date = new Date();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String dataString = sdf.format(date);
         ContentValues values = new ContentValues();
         values.put("gprs",String.valueOf(gprs));
         values.put("date","datetime(" + dataString + ")");
-        db.update("traffic",values,"date=?",new String[] {"datetime(" + dataString + ")"});
+        db.update("traffic", values, "date=?",new String[] { "datetime("
+                + dataString + ")"});
     }
 }
