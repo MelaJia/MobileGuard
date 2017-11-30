@@ -116,6 +116,7 @@
         <activity android:name=".m6cleancache.CacheClearListActivity" />
         <activity android:name=".m6cleancache.CleanCacheActivity" />
         <activity android:name=".m8trafficmonitor.OperatorSetActivity"></activity>
+        <activity android:name=".m8trafficmonitor.TrafficMonitoringActivity"/>
     </application>
 
 </manifest>
