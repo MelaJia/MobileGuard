@@ -1,5 +1,6 @@
 package cn.edu.gdmec.android.mobileguard.m8trafficmonitor;
 
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -31,7 +32,7 @@ import cn.edu.gdmec.android.mobileguard.m8trafficmonitor.utils.SystemInfoUtils;
  * Created by student on 17/11/28.
  */
 
-public class TrafficMonitoringActivity extends AppCompatActivity implements View.OnClickListener {
+public class TrafficMonitoringActivity extends Activity implements View.OnClickListener {
     private SharedPreferences mSP;
     private Button mCorrectFlowBtn;
     private TextView mTotalTV;

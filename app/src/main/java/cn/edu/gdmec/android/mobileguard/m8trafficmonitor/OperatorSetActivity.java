@@ -1,5 +1,6 @@
 package cn.edu.gdmec.android.mobileguard.m8trafficmonitor;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -15,7 +16,7 @@ import java.lang.reflect.Array;
 
 import cn.edu.gdmec.android.mobileguard.R;
 
-public class OperatorSetActivity extends AppCompatActivity implements View.OnClickListener {
+public class OperatorSetActivity extends Activity implements View.OnClickListener {
     private Spinner mSelectSP;
     private String[] operators = {"中国移动", "中国联通", "中国电信"};
     private ArrayAdapter mSelectadapter;
