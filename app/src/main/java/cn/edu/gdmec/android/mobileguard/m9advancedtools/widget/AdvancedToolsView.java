@@ -28,13 +28,21 @@ public class AdvancedToolsView extends RelativeLayout{
 
 
     }
-    public AdvancedToolsView(Context context, AttributeSet attrs,int defStyle){
-        super(context,attrs,defStyle);
-        //拿到属性对象值
+    public AdvancedToolsView(Context context, AttributeSet attrs){
+        super(context, attrs);
         TypedArray mTypeArray = context.obtainStyledAttributes(attrs, R.styleable.AdvancedToolsView);
         desc = mTypeArray.getString(R.styleable.AdvancedToolsView_desc);
         drawable = mTypeArray.getDrawable(R.styleable.AdvancedToolsView_android_src);
         mTypeArray.recycle();
+        init(context);
+
+
+    }
+
+    public AdvancedToolsView(Context context, AttributeSet attrs, int defStyle){
+        super(context, attrs, defStyle);
+        //拿到属性对象值
+        TypedArray mTypeArray = context.obtainStyledAttributes(attrs, R.styleable.AdvancedToolsView);
         init(context);
 
 

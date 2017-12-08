@@ -29,6 +29,7 @@ import cn.edu.gdmec.android.mobileguard.m5virusscan.VirusScanActivity;
 import cn.edu.gdmec.android.mobileguard.m6cleancache.CacheClearListActivity;
 import cn.edu.gdmec.android.mobileguard.m6cleancache.CleanCacheActivity;
 import cn.edu.gdmec.android.mobileguard.m8trafficmonitor.TrafficMonitoringActivity;
+import cn.edu.gdmec.android.mobileguard.m9advancedtools.AdvancedToolsActivity;
 
 /**
  * Created by HP on 2017/9/24.-+--+
@@ -85,7 +86,11 @@ public class HomeActivity extends Activity {
                         break;
                     case 6:
                         startActivity(TrafficMonitoringActivity.class);
-                        break;                }
+                        break;
+                    case 7:
+                        startActivity(AdvancedToolsActivity.class);
+                        break;
+                }
             }
         });
        //1.获取设备管理员

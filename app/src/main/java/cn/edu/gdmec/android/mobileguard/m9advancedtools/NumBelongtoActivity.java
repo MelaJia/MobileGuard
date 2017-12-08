@@ -25,7 +25,6 @@ import cn.edu.gdmec.android.mobileguard.m9advancedtools.db.dao.NumBelongtoDao;
 
 public class NumBelongtoActivity extends Activity implements View.OnClickListener{
     private EditText mNumET;
-//    private TextView mResultTV;
     private TextView mResultTV;
     private String dbName = "address.db";
 
@@ -41,7 +40,7 @@ public class NumBelongtoActivity extends Activity implements View.OnClickListene
     private void initView(){
         findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.bright_red));
         ImageView mLeftImgv = (ImageView)findViewById(R.id.imgv_leftbtn);
-//        (TextView) findViewById(R.id.tv_title).setText("号码归属地查询");
+        ((TextView) findViewById(R.id.tv_title)).setText("号码归属地查询");
         mLeftImgv.setOnClickListener(this);
         mLeftImgv.setImageResource(R.drawable.back);
         findViewById(R.id.btn_searchnumberbelongto).setOnClickListener(this);
@@ -82,7 +81,7 @@ public class NumBelongtoActivity extends Activity implements View.OnClickListene
                 if (!TextUtils.isEmpty(phonenumber)){
                     File file = new File(getFilesDir(),dbName);
                     if (!file.exists() || file.length() <= 0){
-                        //
+                        //数据库不存在，复制数据库
                         copyDB(dbName);
                     }
                     //
@@ -106,7 +105,6 @@ public class NumBelongtoActivity extends Activity implements View.OnClickListene
         new Thread(){
             @Override
             public void run() {
-
                 try {
                     File file = new File(getFilesDir(),dbname);
                     if (file.exists() && file.length() > 0){
@@ -125,7 +123,7 @@ public class NumBelongtoActivity extends Activity implements View.OnClickListene
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
+            };
         }.start();
     }
 }

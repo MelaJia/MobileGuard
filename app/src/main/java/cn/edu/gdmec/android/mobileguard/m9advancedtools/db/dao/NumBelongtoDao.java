@@ -29,7 +29,7 @@ public class NumBelongtoDao {
         SQLiteDatabase db = SQLiteDatabase.openDatabase(dbname,null,SQLiteDatabase.OPEN_READONLY);
         if (phonenumber.matches("^1[34578]\\d{9}$")){
             //手机号码查询
-            Cursor cursor = db.rawQuery("select location from data2 where id=(select outkey from datal where id=?)",new String[]{phonenumber.substring(0,7)});
+            Cursor cursor = db.rawQuery("select location from data2 where id=(select outkey from data1 where id=?)",new String[]{phonenumber.substring(0,7)});
             if (cursor.moveToNext()){
                 location = cursor.getString(0);
             }
@@ -60,7 +60,7 @@ public class NumBelongtoDao {
                     location = "本地电话";
                     break;
                 default:
-                    if (location.length() >= 9 && location.startsWith("0")){
+                    if (location.length() >=  9 && location.startsWith("0")){
                         String address = null;
                         Cursor cursor = db.rawQuery("select location from data2 where area = ?",new String[]{location.substring(1,3)});
                         if (cursor.moveToNext()){
@@ -71,18 +71,14 @@ public class NumBelongtoDao {
                         cursor = db.rawQuery("select location from ata2 where area = ?",new String[]{location.substring(1,4)});
                         if (cursor.moveToNext()){
                             String str = cursor.getString(0);
+                            address = str.substring(0,str.length()-2);
                         }
                         cursor.close();
                         if (!TextUtils.isEmpty(address)){
                             location = address;
                         }
-
-
-
                     }
                     break;
-
-
             }
         }
         db.close();
