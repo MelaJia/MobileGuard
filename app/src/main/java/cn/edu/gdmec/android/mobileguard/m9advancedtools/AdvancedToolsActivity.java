@@ -50,6 +50,9 @@ public class AdvancedToolsActivity extends Activity implements View.OnClickListe
             case R.id.advancevieiw_nubelongs:
                 startActivity(NumBelongtoActivity.class);
                 break;
+            case R.id.advancevieiw_applock:
+                startActivity(AppLockActivity.class);
+                break;
         }
     }
     /**
