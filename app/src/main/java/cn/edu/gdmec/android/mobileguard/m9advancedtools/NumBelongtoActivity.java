@@ -1,7 +1,6 @@
 package cn.edu.gdmec.android.mobileguard.m9advancedtools;
 
 import android.app.Activity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -85,8 +84,10 @@ public class NumBelongtoActivity extends Activity implements View.OnClickListene
                         copyDB(dbName);
                     }
                     //
+//                    String location = NumBelongtoDao.getLocation(phonenumber);
+//                    mResultTV.setText("归属地：" + location);
                     String location = NumBelongtoDao.getLocation(this,phonenumber);
-                    mResultTV.setText("归属地：" + location);
+                    mResultTV.setText("归属感:"+location);
 
                 }else{
                     Toast.makeText(this,"请输入要查询的号码",Toast.LENGTH_SHORT).show();
