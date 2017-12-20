@@ -22,15 +22,12 @@ public class BlackContactAdapter extends BaseAdapter{
     private Context context;
     private BlackNumberDao dao;
     private BlackContactCallBack callBack;
-//   class ViewHolder{
-//        TextView mNameTV;
-//        TextView mModeTV;
-//        View mContactImgv;
-//        View mDeleteView;
-//    }
+
 class ViewHolder{
     TextView mNameTV;
     TextView mModeTV;
+    TextView mStyleTV;
+
     View mContactImgv;
     View mDeleteView;
 }
@@ -67,6 +64,7 @@ class ViewHolder{
             holder = new ViewHolder();
             holder.mNameTV = (TextView) view.findViewById(R.id.tv_black_name);
             holder.mModeTV = (TextView) view.findViewById(R.id.tv_black_mode);
+           holder.mStyleTV = (TextView) view.findViewById(R.id.tv_black_style);
             holder.mContactImgv =  view.findViewById(R.id.view_black_icon);
             holder.mDeleteView =  view.findViewById(R.id.view_black_delete);
             view.setTag(holder);
@@ -75,8 +73,13 @@ class ViewHolder{
         }
         holder.mNameTV.setText(contactInfos.get(i).contactName+"("+contactInfos.get(i).phoneNumber+")");
         holder.mModeTV.setText(contactInfos.get(i).getModeString(contactInfos.get(i).mode));
+
         holder.mNameTV.setTextColor(context.getResources().getColor(R.color.bright_purple));
         holder.mModeTV.setTextColor(context.getResources().getColor(R.color.bright_purple));
+
+        holder.mStyleTV.setText(contactInfos.get(i).style);
+        holder.mStyleTV.setTextColor(context.getResources().getColor(R.color.bright_purple));
+
         holder.mContactImgv.setBackgroundResource(R.drawable.brightpurple_contact_icon);
         holder.mDeleteView.setOnClickListener(new View.OnClickListener(){
             @Override
