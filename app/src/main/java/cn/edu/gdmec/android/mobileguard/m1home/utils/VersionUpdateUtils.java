@@ -68,9 +68,11 @@ public class VersionUpdateUtils {
            switch (msg.what){
                case MESSAGE_IO_ERROR:
                    Toast.makeText(context,"IO错误",Toast.LENGTH_LONG).show();
+                   enterHome();
                    break;
                case MESSAGE_JSON_ERROR:
                    Toast.makeText(context,"JSON解析错误",Toast.LENGTH_LONG).show();
+
                    break;
                case MESSAGE_SHOW_DIALOG:
                    showUpdateDialog(versionEntity);
@@ -161,7 +163,7 @@ public VersionUpdateUtils(String mVersion, Activity context,DownloadCallback dow
             public void onClick(DialogInterface dialogInterface, int i) {
                 //下载apk
                 downloadNewApk(versionEntity.apkurl);
-                enterHome();
+              //  enterHome();
             }
         });
         builder.setNegativeButton("暂不升级", new DialogInterface.OnClickListener() {

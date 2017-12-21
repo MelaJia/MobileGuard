@@ -2,12 +2,14 @@ package cn.edu.gdmec.android.mobileguard.m9advancedtools;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,7 +24,8 @@ import cn.edu.gdmec.android.mobileguard.m9advancedtools.fragment.AppUnLockFragme
  * Created by student on 17/12/11.
  */
 
-public class AppLockActivity extends AppCompatActivity implements View.OnClickListener{
+public class AppLockActivity extends FragmentActivity implements View.OnClickListener {
+
     private ViewPager mAppViewPager;
     List<Fragment> mFragments = new ArrayList<Fragment>();
     private TextView mLockTV;
@@ -30,16 +33,18 @@ public class AppLockActivity extends AppCompatActivity implements View.OnClickLi
     private View slideLockView;
     private View slideUnLockView;
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_app_lock);
         initView();
         initListener();
     }
     @Override
-    public void onClick(View view){
-        switch (view.getId()){
+    public void onClick(View v) {
+        switch (v.getId()) {
             case R.id.imgv_leftbtn:
                 finish();
                 break;
@@ -51,12 +56,13 @@ public class AppLockActivity extends AppCompatActivity implements View.OnClickLi
                 break;
         }
     }
-    private void initListener(){
-        mAppViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener(){
+    private void initListener() {
+        mAppViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
             @Override
-            public void onPageSelected(int arg0){
-                if (arg0 == 0){
-                    slideUnLockView.setBackgroundResource(R.drawable.slide_view);
+            public void onPageSelected(int arg0) {
+                if(arg0 == 0){
+                    slideUnLockView.setBackgroundResource( R.drawable.slide_view);
                     slideLockView.setBackgroundColor(getResources().getColor(R.color.transparent));
                     //未加锁
                     mLockTV.setTextColor(getResources().getColor(R.color.black));
@@ -67,21 +73,25 @@ public class AppLockActivity extends AppCompatActivity implements View.OnClickLi
                     //已加锁
                     mLockTV.setTextColor(getResources().getColor(R.color.bright_red));
                     mUnLockTV.setTextColor(getResources().getColor(R.color.black));
-
                 }
             }
+
             @Override
-            public void onPageScrolled(int arg0,float arg1,int arg2){
+            public void onPageScrolled(int arg0, float arg1, int arg2) {
 
             }
+
             @Override
-            public void onPageScrollStateChanged(int arg0){
+            public void onPageScrollStateChanged(int arg0) {
 
             }
         });
+
     }
-    private void initView(){
-        findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.bright_red));
+
+    private void initView() {
+        findViewById(R.id.rl_titlebar).setBackgroundColor(
+                getResources().getColor(R.color.bright_red));
         ImageView mLeftImgv = (ImageView) findViewById(R.id.imgv_leftbtn);
         ((TextView) findViewById(R.id.tv_title)).setText("程序锁");
         mLeftImgv.setOnClickListener(this);
@@ -94,26 +104,29 @@ public class AppLockActivity extends AppCompatActivity implements View.OnClickLi
         slideLockView = findViewById(R.id.view_slide_lock);
         slideUnLockView = findViewById(R.id.view_slide_unlock);
         AppUnLockFragment unLock = new AppUnLockFragment();
-        AppLockFragment lock = new AppLockFragment();
+        AppLockFragment lock = new AppLockFragment ();
         mFragments.add(unLock);
         mFragments.add(lock);
         mAppViewPager.setAdapter(new MyAdapter(getSupportFragmentManager()));
 
     }
+
+
+
     class MyAdapter extends FragmentPagerAdapter{
-        public MyAdapter(FragmentManager fm){
+
+        public MyAdapter(FragmentManager fm) {
             super(fm);
         }
+
         @Override
-        public android.support.v4.app.Fragment getItem(int arg0){
+        public android.support.v4.app.Fragment getItem(int arg0) {
             return mFragments.get(arg0);
         }
+
         @Override
-        public int getCount(){
+        public int getCount() {
             return mFragments.size();
         }
     }
-
-
-
 }
