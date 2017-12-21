@@ -28,7 +28,7 @@ import cn.edu.gdmec.android.mobileguard.m5virusscan.dao.AntiVirusDao;
  * Created by Dell on 2017/11/10.
  */
 
-public class VirusScanActivity extends AppCompatActivity implements View.OnClickListener{
+public class VirusScanActivity extends Activity implements View.OnClickListener{
     private TextView mLastTimeTV;
     private TextView mDbVersionTV;
     private SharedPreferences mSP;
@@ -40,7 +40,7 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate ( savedInstanceState );
-        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+      //  supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView ( R.layout.activity_virus_scan );
         mSP = getSharedPreferences ( "config", MODE_PRIVATE );
 
@@ -141,6 +141,7 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
         //mScanVersion=(TextView)findViewById(R.id.tv_scan_version);
 
         findViewById ( R.id.rl_allscanvirus ).setOnClickListener ( this );
+        findViewById(R.id.rl_cloudscanvirus).setOnClickListener(this);
     }
     @Override
     public void onClick(View view){
@@ -151,6 +152,10 @@ public class VirusScanActivity extends AppCompatActivity implements View.OnClick
             case R.id.rl_allscanvirus:
                 startActivity(new Intent ( this,VirusScanSpeedActivity.class ));
                 break;
+            case R.id.rl_cloudscanvirus:
+                Intent intent = new Intent(this,VirusScanSpeedActivity.class);
+                intent.putExtra("cloud",true);
+                startActivity(intent);
         }
     }
 }

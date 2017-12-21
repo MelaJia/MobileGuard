@@ -39,10 +39,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- <activity android:name=".SplashActivity"> -->
+
         <!-- 信使编译器 -->
-        <activity android:name=".m1home.HomeActivity">
-            <intent-filter>
+        <activity android:name=".m1home.HomeActivity"/>
+        <activity android:name=".SplashActivity">
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
