@@ -88,6 +88,8 @@ public class CacheClearListActivity extends Activity implements View.OnClickList
         initView();
     }
     private void initView(){
+       // findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.rose_red));
+        //hello
         findViewById(R.id.rl_titlebar).setBackgroundColor(getResources().getColor(R.color.rose_red));
         ImageView mLeftImgv = (ImageView)findViewById(R.id.imgv_leftbtn);
         mLeftImgv.setOnClickListener(this);
@@ -104,6 +106,7 @@ public class CacheClearListActivity extends Activity implements View.OnClickList
         adapter = new CacheCleanAdapter(this,mCacheInfos);
         mCacheLV.setAdapter(adapter);
         fillData();
+        //System.out.println("hello");
     }
     /**
      * 填充数据
