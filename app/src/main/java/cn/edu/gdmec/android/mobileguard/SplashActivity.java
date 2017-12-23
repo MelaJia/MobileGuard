@@ -19,7 +19,7 @@ public class SplashActivity extends Activity {
     private TextView mTvVision;
     private String mVersion;
     //    onCreate(),activity创建时调用
-    private static final int MY_PERMISSIONS_REQUESE_PACKAGE_USAGE_STATS = 1101;
+    private static final int MY_PERMISSIONS_REQUEST_PACKAGE_USAGE_STATS = 1101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,10 +38,9 @@ public class SplashActivity extends Activity {
 //                versionUpdateUtils.getCloudVersion();
 //            };
 //        }.start();
-        if (!hasPermission()) {
-            //若用户未开启权限，则引导用户开启“apps with usage access"权限
-            startActivityForResult(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS),
-                    MY_PERMISSIONS_REQUESE_PACKAGE_USAGE_STATS);
+        if (!hasPermission()){
+            //若用户为开启权限，则引导用户开启：app with
+            startActivityForResult(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS),MY_PERMISSIONS_REQUEST_PACKAGE_USAGE_STATS);
         }
 
 //        startActivity(new Intent(this, HomeActivity.class));
@@ -76,11 +75,11 @@ public class SplashActivity extends Activity {
     }
     @Override
     protected void onActivityResult(int requestCode,int resultCode,Intent data){
-        if (requestCode == MY_PERMISSIONS_REQUESE_PACKAGE_USAGE_STATS){
+        if (requestCode == MY_PERMISSIONS_REQUEST_PACKAGE_USAGE_STATS){
             if (!hasPermission()){
                 //若用户未开启权限，则引导用户开启apps with usage access  权限
                 startActivityForResult(new Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS),
-                        MY_PERMISSIONS_REQUESE_PACKAGE_USAGE_STATS);
+                        MY_PERMISSIONS_REQUEST_PACKAGE_USAGE_STATS);
         }
         }
     }

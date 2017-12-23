@@ -17,13 +17,15 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
+    <!--通讯卫士-->
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <uses-permission android:name="android.permission.WRITE_CALL_LOG" />
-    <!-- m5 permission -->
-    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
-    <uses-permission android:name="android.permission.CLEAR_APP_CACHE" />
+    <!-- m5 手机杀毒部分permission -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <!--缓存清理部分-->
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    <!--<uses-permission android:name="android.permission.CLEAR_APP_CACHE" />-->
     <!--m9 -->
     <uses-permission
         android:name="android.permission.PACKAGE_USAGE_STATS"
@@ -125,6 +127,10 @@
         <activity android:name=".m8trafficmonitor.TrafficMonitoringActivity" />
         <activity android:name=".m9advancedtools.AdvancedToolsActivity" />
         <activity android:name=".m9advancedtools.NumBelongtoActivity"></activity>
+       <service android:name=".m9advancedtools.service.AppLockService"
+        android:enabled="true"
+        android:exported="true"/>
+        <activity android:name=".m9advancedtools.EnterPswActivity"></activity>
         <activity android:name=".m9advancedtools.AppLockActivity"/>
 
     </application>

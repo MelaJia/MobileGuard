@@ -24,6 +24,9 @@ public class AppInfo {
     public boolean isUserAPP;
     /*是否选中，默认都为false*/
     public boolean isSelected = false;
+//    public String versionName;
+//    public long firstInstallTime;
+//    public String signature;
     //**拿到app位置字符串*/
     public String getAppLocation(boolean isInRoom){
         if (isInRoom){
